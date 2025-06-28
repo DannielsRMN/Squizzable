@@ -69,7 +69,10 @@ export class AppComponent {
         items: [
           {
             label: 'Módulos',
-            icon: 'pi pi-plus'
+            icon: 'pi pi-plus',
+            command: () => {
+              this.router.navigate(['/modulo'])
+            }
           },
           {
             label: 'Progreso',

@@ -10,7 +10,7 @@ export class TokenInterceptor implements HttpInterceptor {
     if (token && !req.url.includes('/api/login/')) {
       req = req.clone({
         setHeaders: {
-          Authorization: 'Token ${token}',
+          Authorization: `Token ${token}`,
           'X-API-KEY' : 'jnxAAq7a65wzXyQ3qPPF'
         }
       });

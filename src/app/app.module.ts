@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 // Estilo General
 import { ApplicationConfig } from '@angular/core';
@@ -17,6 +17,13 @@ import { Menubar } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
+// Tabla
+import { ToastModule } from 'primeng/toast';
+import { TagModule } from 'primeng/tag';
+import { SelectModule } from 'primeng/select';
+import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
+
 // Componente
 import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
@@ -28,14 +35,17 @@ import { MenubarModule } from 'primeng/menubar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
-
+import { IMAGE_CONFIG } from '@angular/common';
+import { TokenInterceptor } from '../services/token.interceptor';
+import { ModulosComponent } from './modulos/modulos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
-    LoginComponent
+    LoginComponent,
+    ModulosComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +61,21 @@ import { MenuModule } from 'primeng/menu';
     PanelMenuModule,
     ReactiveFormsModule,
     MenuModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule,
+    TagModule,
+    SelectModule,
+    InputTextModule,
+    DialogModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: IMAGE_CONFIG,
+      useValue: {
+        disableImageSizeWarning: true,
+        disableImageLazyLoadWarning: true
+      }
+    },
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {

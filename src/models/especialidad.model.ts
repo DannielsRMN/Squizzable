@@ -1,4 +1,4 @@
-export class Especialidad {
-  idEspecialidad? : number;
+export class especialidad {
+  idEspecialidad : number;
   nombreEspecialidad : string;
 }

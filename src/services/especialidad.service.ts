@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Especialidad } from "../models/especialidad.model";
+import { especialidad } from "../models/especialidad.model";
 
 @Injectable({
   providedIn: "root"
@@ -17,22 +17,22 @@ export class EspecialidadService {
     constructor(private http: HttpClient) {
     }
 
-    public getEspecialidades(): Observable<Especialidad[]> {
-        return this.http.get<Especialidad[]>(this.ApiUrl + 'Especialidad');
+    public getEspecialidades(): Observable<especialidad[]> {
+        return this.http.get<especialidad[]>(this.ApiUrl + 'Especialidad');
     }
 
     public deleteEspecialidad(id:string): Observable<void>{
         return this.http.delete<void>(this.ApiUrl + 'Especialidad/' + id + "/");
     }
 
-    public putEspecialidad(especialidad:Especialidad): Observable<Especialidad>{
+    public putEspecialidad(especialidad:especialidad): Observable<especialidad>{
         let body = JSON.stringify(especialidad);
-        return this.http.put<Especialidad>(this.ApiUrl + 'Especialidad/' + especialidad.idEspecialidad + "/",body,this.httpOptions);
+        return this.http.put<especialidad>(this.ApiUrl + 'Especialidad/' + especialidad.idEspecialidad + "/",body,this.httpOptions);
     }
 
-    public postEspecialidad(especialidad:Especialidad): Observable<Especialidad>{
+    public postEspecialidad(especialidad:especialidad): Observable<especialidad>{
         let body = JSON.stringify(especialidad);
-        return this.http.post<Especialidad>(this.ApiUrl + 'Especialidad/',body,this.httpOptions);
+        return this.http.post<especialidad>(this.ApiUrl + 'Especialidad/',body,this.httpOptions);
     }
 
 }

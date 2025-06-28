@@ -1,0 +1,75 @@
+<h2>Listado de Módulos</h2>
+
+<p-button label="Nuevo Módulo" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+<p-table [value]="modulos" [tableStyle]="{'min-width': '75rem'}">
+    <ng-template #header>
+        <tr>
+            <th style="width:20%">ID</th>
+            <th style="width:20%">Nombre</th>
+            <th style="width:20%">Dificultad</th>
+            <th style="width:20%">Especialidad</th>
+            <th style="width:20%">Acciones</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-modulo let-ri="rowIndex">
+        <tr>
+            <td>
+                {{ modulo.idModulo }}
+            </td>
+            <td>
+                {{ modulo.nombreModulo }}
+            </td>
+            <td>
+                {{ modulo.dificultad }}
+            </td>
+            <td>
+                {{ modulo.especialidad }}
+            </td>
+            <td>
+                <div class="flex items-center justify-center gap-2">
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-pencil"
+                        (click)="editarModulo(modulo)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>
+                    <!-- DELETE -> Boton -->
+                    <button
+                        pButton
+                        pRipple
+                        type="button"
+                        icon="pi pi-times"
+                        (click)="eliminarModulo(modulo)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- CREATE y UPDATE -> Formulario -->
+<p-dialog header="Creación/Edición de Modulo" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <div class="flex items-center gap-4 mb-4">
+        <label for="modulo" class="font-semibold w-24">Modulo</label>
+        <input pInputText id="modulo" class="flex-auto" autocomplete="off" [(ngModel)]="moduloDialogo.nombreModulo"/>
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="tipo" class="font-semibold w-24">Dificultad</label>
+        <p-select id="tipo" [options]="dificultades" [(ngModel)]="dif_select" placeholder="Seleccione una Dificultad" class="w-full md:w-56" />
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="especialidad" class="font-semibold w-24">Especialidad</label>
+        <p-select id="especialidad" [options]="especialidades" [(ngModel)]="espe_select" optionLabel="nombreEspecialidad" placeholder="Seleccione una Especialidad" class="w-full md:w-56" />
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+        <p-button label="Guardar" (click)="guardarModulo()" />
+    </div>
+</p-dialog>
