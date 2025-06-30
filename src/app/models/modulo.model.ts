@@ -1,4 +1,4 @@
-export class modulo {
+export interface modulo {
   idModulo: number
   nombreModulo: string
   dificultad: string
