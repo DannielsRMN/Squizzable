@@ -1,8 +1,10 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { modulo } from "../models/modulo.model";
+import { alternativa } from "../models/alternativa.model";
 import { especialidad } from "../models/especialidad.model";
+import { modulo } from "../models/modulo.model";
+import { pregunta } from "../models/pregunta.model";
 
 @Injectable({
   providedIn: "root"
@@ -55,5 +57,48 @@ export class ApiService {
         let body = JSON.stringify(especialidad);
         return this.http.post<especialidad>(this.ApiUrl + 'Especialidad/',body,this.httpOptions);
     }
+
+
+    //CRUG PREGUNTA
+
+     public getPregunta(): Observable<pregunta[]> {
+        return this.http.get<pregunta[]>(this.ApiUrl + 'Preguntas');
+    }
+
+
+
+    public deletePregunta(idPregunta:string): Observable<void>{
+        return this.http.delete<void>(this.ApiUrl + 'Preguntas/' + idPregunta + "/");
+    }
+
+    public putPregunta(pregunta:pregunta): Observable<pregunta>{
+        let body = JSON.stringify(pregunta);
+        return this.http.put<pregunta>(this.ApiUrl + 'Preguntas/' + pregunta.idPregunta + "Preguntas/",body,this.httpOptions);
+    }
+
+    public postPregunta(pregunta:pregunta): Observable<pregunta>{
+        let body = JSON.stringify(pregunta);
+        return this.http.post<pregunta>(this.ApiUrl + 'Preguntas/',body,this.httpOptions);
+    }
+
+     //CRUG alternativa
+      public getAlternativa(): Observable<alternativa[]> {
+        return this.http.get<alternativa[]>(this.ApiUrl + 'Alternativa');
+    }
+
+     public deleteAlternativa(id:string): Observable<void>{
+            return this.http.delete<void>(this.ApiUrl + 'Alternativa/' + id + "/");
+        }
+    
+        public putAlternativa(alternativa:alternativa): Observable<alternativa>{
+            let body = JSON.stringify(alternativa);
+            return this.http.put<alternativa>(this.ApiUrl + 'Alternativa/' + alternativa.idAlternativa+ "/",body,this.httpOptions);
+        }
+    
+        public postAlternativa(alternativa:alternativa): Observable<alternativa>{
+            let body = JSON.stringify(alternativa);
+            return this.http.post<alternativa>(this.ApiUrl + 'Alternativa/',body,this.httpOptions);
+        }
+
 
 }
