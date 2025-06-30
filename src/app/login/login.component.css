@@ -3,9 +3,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: auto;
   width: 100vw;
+  overflow-x: hidden;
   background-color: white;
+  margin-top: 15px;
+  padding-bottom: 45px;
 }
 
 .login-box {

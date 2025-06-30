@@ -1,13 +1,13 @@
 <div class="body">
 
-  <div class="contenido">
+  <div class="contenido" *ngIf="menuVisible">
 
-    <div class="barra-superior" *ngIf="mostrarMenu">
+    <div class="barra-superior" *ngIf="menuVisible">
       <p-menubar [model]="items">
         <ng-template pTemplate="start">
           <div class="menu-left">
             <img [src]="isDarkMode ? '/White.png' : '/Black.png'" alt="Logo" class="logo-img" height="45px" />
-            <span class="proyect">Squizzable</span>
+            <a routerLink="/inicio" class="title" [style]="isDarkMode ? 'color: white' : 'color : black'">Squizzable</a>
           </div>
 
         </ng-template>
@@ -31,7 +31,7 @@
 
   <main class="main-content">
 
-    <div *ngIf="mostrarMenu" class="barra-vertical">
+    <div *ngIf="menuVisible" class="barra-vertical">
       <p-menu [model]="vertical" />
     </div>
 

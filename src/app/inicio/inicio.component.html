@@ -1,1 +1,9 @@
 <H2>Inicio</H2>
+
+<div *ngIf="nombreUsuario$ | async as userName">
+  Bienvenido, {{ userName }}!
+</div>
+
+<div *ngIf="isSuperuser$ | async as isSuperuser">
+  Usted es, {{ isSuperuser }}!
+</div>
