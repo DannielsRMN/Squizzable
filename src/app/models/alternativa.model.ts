@@ -1,4 +1,4 @@
-export interface Alternativa {
+export class Alternativa {
   idAlternativa: number;     // Para mis ids
   alternativa: string;       // Texto de la alternativa (La respuesta ps, HIJO)
   esCorrecta: boolean;       // Para ver si es correcta o no (Recordar que siempre hay una correcta, no te olvides MARMOTA)

@@ -47,7 +47,7 @@ export class ApiService {
     }
 
     public putEspecialidad(especialidad:especialidad): Observable<especialidad>{
-        let body = JSON.stringify(modulo);
+        let body = JSON.stringify(especialidad);
         return this.http.put<especialidad>(this.ApiUrl + 'Especialidad/' + especialidad.idEspecialidad + "/",body,this.httpOptions);
     }
 
