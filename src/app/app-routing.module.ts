@@ -4,13 +4,18 @@ import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from '../services/auth.guard';
 import { ModulosComponent } from './modulos/modulos.component';
+import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
 
 const routes: Routes = [
-  {path: '', component: InicioComponent},
-  {path: "login", component: LoginComponent},
-  {path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path: "inicio", component: InicioComponent, canActivate: [AuthGuard]},
-  {path: "modulo", component: ModulosComponent},
+  { path: "login", component: LoginComponent },
+
+  { path: "inicio", component: InicioComponent, canActivate: [AuthGuard] },
+  { path: "modulo", component: ModulosComponent, canActivate: [AuthGuard] }, // Protege esta ruta
+  { path: "Registrar-Usuario", component: RegistrarUsuarioComponent, canActivate: [AuthGuard] }, // Protege esta ruta
+
+  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+
+  { path: '**', redirectTo: 'inicio' }
 ];
 
 @NgModule({

@@ -38,6 +38,7 @@ import { MenuModule } from 'primeng/menu';
 import { IMAGE_CONFIG } from '@angular/common';
 import { TokenInterceptor } from '../services/token.interceptor';
 import { ModulosComponent } from './modulos/modulos.component';
+import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ModulosComponent } from './modulos/modulos.component';
     AppComponent,
     InicioComponent,
     LoginComponent,
-    ModulosComponent
+    ModulosComponent,
+    RegistrarUsuarioComponent
   ],
   imports: [
     BrowserModule,

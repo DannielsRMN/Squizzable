@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../services/auth.service';
-import { filter } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { MenuVisibilityService } from '../services/visible.service';
 
 
 @Component({
@@ -14,18 +15,17 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
 
-  // Mostra Menu
-  mostrarMenu = true;
-
-  constructor(private login: AuthService, private router: Router) {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        const rutasSinMenu = ['/login'];
-
-        this.mostrarMenu = !rutasSinMenu.includes(event.urlAfterRedirects);
-      });
+  constructor(private login: AuthService, private router: Router, private menu: MenuVisibilityService, private conf: AuthService) {
+    this.isSuperuser$ = this.conf.isSuperuser$;
   }
+
+  // Admin Cookie
+  isSuperuser$: Observable<string | null>;
+
+
+  // Mostra Menu
+  menuVisible: boolean = true;
+  private menuSubscription: Subscription = new Subscription();
 
   // Menú Bar
   items: MenuItem[] | undefined;
@@ -54,12 +54,24 @@ export class AppComponent {
     this.login.logOff()
   }
 
+  ngOnDestroy(){
+    this.menuSubscription.unsubscribe();
+  }
+
   ngOnInit() {
+    // Modo Oscuro
     const htmlElement = document.documentElement;
     this.isDarkMode = localStorage.getItem('darkMode') === 'true';
     if (this.isDarkMode) {
       htmlElement.classList.add('dk');
     }
+
+    // Visibilidad de Menú
+    this.menuSubscription = this.menu.menuVisible$.subscribe(
+      (isVisible: boolean) => {
+        this.menuVisible = isVisible;
+      }
+    );
 
     this.items = []
 

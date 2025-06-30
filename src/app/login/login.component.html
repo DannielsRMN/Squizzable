@@ -19,16 +19,10 @@
           <i class="pi pi-lock icon-right"></i>
         </div>
 
-        <!-- <div class="options">
-          <p-checkbox name="rememberMe" binary="true" [(ngModel)]="rememberMe" inputId="rememberMe"></p-checkbox>
-          <label for="rememberMe">Recordar Contraseña</label>
-          <a class="forgot" href="#">Olvidé mi contraseña</a>
-        </div> -->
-
         <button type="submit" pButton label="Iniciar Sesión" class="login-button" [disabled]="!loginForm.valid"></button>
       </form>
 
-      <p class="register">¿No tienes una cuenta?, intenta <a href="#">registrarte</a></p>
+      <p class="register">¿No tienes una cuenta?, intenta <a routerLink="/Registrar-Usuario">registrarte</a></p>
     </div>
 
     <div class="image-container">
