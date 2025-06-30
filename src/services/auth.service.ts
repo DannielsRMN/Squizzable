@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 // Permite la redirección y mandarte a la página que deseas | permite saber a donde vas a ir
 import { Router, ActivatedRoute } from "@angular/router";
 // Para crear una cookie, más que para eso, para definir que la cookie esté caliente o sea que se pueda usar mientras aunque se realicen cambios
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ import { BehaviorSubject } from "rxjs";
 
 export class AuthService {
   // El token será una cookie y puede ser un string o nulo.
-  private token = new BehaviorSubject<string | null>(null);
+  private token = new BehaviorSubject<string | null>(localStorage.getItem('token'));
 
   // Creamos la URL de la API
   private apiUrl = 'http://127.0.0.1:8000/api';
@@ -34,6 +34,36 @@ export class AuthService {
       console.error('Error en el login', error)
     });
     // Se pone entre llaves para que se transforme en JSON
+  }
+
+  private name = new BehaviorSubject<string | null>(localStorage.getItem('name'));
+  public name$: Observable<string | null> = this.name.asObservable();
+
+  obtenerNombre(username: string, password: string) {
+    const headers = { 'x-api-key': 'jnxAAq7a65wzXyQ3qPPF' }
+    this.http.post<{ username: string }>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
+      this.name.next(respuesta.username);
+      localStorage.setItem('name', respuesta.username);
+    });
+  }
+
+  returnNombre(){
+    return localStorage.getItem('name');
+  }
+
+  private isSuperuser = new BehaviorSubject<string | null>(localStorage.getItem('admin'));
+  public isSuperuser$: Observable<string | null> = this.isSuperuser.asObservable();
+
+  obtenerAdmin(username: string, password: string) {
+    const headers = { 'x-api-key': 'jnxAAq7a65wzXyQ3qPPF' }
+    this.http.post<{ is_superuser: string }>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
+      this.isSuperuser.next(respuesta.is_superuser);
+      localStorage.setItem('admin', respuesta.is_superuser);
+    });
+  }
+
+  returnAdmin(){
+    return localStorage.getItem('admin');
   }
 
   areYouLogged() {

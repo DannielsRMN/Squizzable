@@ -46,3 +46,14 @@
   display: flex;
   gap: 10px;
 }
+
+.proyect{
+  text-decoration: none;
+}
+
+.title{
+  text-decoration: none;
+  font-family: "Jersey 25", sans-serif;
+  font-size: 35px;
+  margin-left: 10px;
+}

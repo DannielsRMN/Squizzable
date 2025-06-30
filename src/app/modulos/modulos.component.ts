@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
-import { ModuloService } from '../../services/modulo.service';
 import { modulo } from '../../models/modulo.model';
-import { EspecialidadService } from '../../services/especialidad.service';
 import { especialidad } from '../../models/especialidad.model';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-modulos',
   standalone: false,
   templateUrl: './modulos.component.html',
   styleUrl: './modulos.component.css',
-  providers: [ModuloService]
+  providers: [ApiService]
 })
 export class ModulosComponent {
 
-  constructor(private api : ModuloService, private comp : EspecialidadService){}
+  constructor(private api : ApiService){}
 
   modulos: modulo[];
   visible:boolean = false;
@@ -37,7 +36,7 @@ export class ModulosComponent {
   }
 
   obtenerEspecialidades(){
-    this.comp.getEspecialidades().subscribe(res => {
+    this.api.getEspecialidad().subscribe(res => {
       this.especialidades = res;
     })
   }
