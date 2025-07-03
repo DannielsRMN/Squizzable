@@ -83,7 +83,7 @@ export class AppComponent {
             label: 'Módulos',
             icon: 'pi pi-plus',
             command: () => {
-              this.router.navigate(['/modulo'])
+              this.router.navigate(['/Modulo'])
             }
           },
           {

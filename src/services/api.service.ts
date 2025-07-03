@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { modulo } from "../models/modulo.model";
 import { especialidad } from "../models/especialidad.model";
+import { usuario } from "../models/usuario.models";
 
 @Injectable({
   providedIn: "root"
@@ -37,7 +38,7 @@ export class ApiService {
         return this.http.post<modulo>(this.ApiUrl + 'Modulo/',body,this.httpOptions);
     }
 
-    // CRUD Modulo
+    // CRUD Especialidad
     public getEspecialidad(): Observable<especialidad[]> {
         return this.http.get<especialidad[]>(this.ApiUrl + 'Especialidad');
     }
@@ -55,5 +56,12 @@ export class ApiService {
         let body = JSON.stringify(especialidad);
         return this.http.post<especialidad>(this.ApiUrl + 'Especialidad/',body,this.httpOptions);
     }
+
+    // CRUD Usuario
+    public postUsuario(usuario:usuario): Observable<usuario>{
+        let body = JSON.stringify(usuario);
+        return this.http.post<usuario>(this.ApiUrl + 'Usuario/',body,this.httpOptions);
+    }
+
 
 }
