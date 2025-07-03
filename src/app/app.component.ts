@@ -101,6 +101,21 @@ export class AppComponent {
         ]
       },
       {
+        label: 'Administrador',
+        items: [
+          {
+            label: 'Modulo',
+            icon: 'pi pi-cog',
+            routerLink: '/Modulo'
+          },
+          {
+            label: 'Especialidad',
+            icon: 'pi pi-sign-out',
+            routerLink: '/Especialidad'
+          }
+        ]
+      },
+      {
         label: 'Sesion',
         items: [
           {
