@@ -24,7 +24,7 @@ export class ApiService {
 
   // CRUD Modulo
   public getModulo(): Observable<modulo[]> {
-    return this.http.get<modulo[]>(this.ApiUrl + 'Modulo');
+    return this.http.get<modulo[]>(this.ApiUrl + 'Modulo/');
   }
 
   public deleteModulo(id: string): Observable<void> {
@@ -107,7 +107,7 @@ export class ApiService {
 
   // CRUD Tema
   public getTema(): Observable<tema[]> {
-    return this.http.get<tema[]>(this.ApiUrl + 'Temas');
+    return this.http.get<tema[]>(this.ApiUrl + 'Temas/');
   }
 
   public deleteTema(id: string): Observable<void> {

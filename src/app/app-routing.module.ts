@@ -8,6 +8,7 @@ import { CRUDEspecializacionesComponent } from './crud-especializaciones/crud-es
 import { CrudModulosComponent } from './crud-modulos/crud-modulos.component';
 import { PreguntaComponent } from './pregunta/pregunta.component';
 import { AlternativaComponent } from './alternativa/alternativa.component';
+import { TemaComponent } from './tema/tema.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "Modulos", component: CrudModulosComponent, canActivate: [AuthGuard] },
   { path: "Preguntas", component: PreguntaComponent, canActivate: [AuthGuard] },
   { path: "Alternativas", component: AlternativaComponent, canActivate: [AuthGuard] },
+  { path: "Temas", component: TemaComponent, canActivate: [AuthGuard] },
 
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
 ];
