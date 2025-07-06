@@ -111,6 +111,11 @@ export class AppComponent {
             icon: 'pi pi-cog',
             routerLink: '/Modulos'
           },
+           {
+            label: 'Temas',
+            icon: 'pi pi-cog',
+            routerLink: '/Temas'
+          },
           {
             label: 'Especialidad',
             icon: 'pi pi-sign-out',
