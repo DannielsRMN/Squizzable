@@ -88,7 +88,10 @@ export class AppComponent {
           },
           {
             label: 'Progreso',
-            icon: 'pi pi-search'
+            icon: 'pi pi-search',
+            command: () => {
+              this.router.navigate(['/Progreso'])
+            }
           },
           {
             label: 'Ranking General',
@@ -106,13 +109,28 @@ export class AppComponent {
           {
             label: 'Modulo',
             icon: 'pi pi-cog',
-            routerLink: '/Modulo'
+            routerLink: '/Modulos'
           },
           {
             label: 'Especialidad',
             icon: 'pi pi-sign-out',
-            routerLink: '/Especialidad'
-          }
+            routerLink: '/Especialidades'
+          },
+          {
+            label: 'Preguntas',
+            icon: 'pi pi-sign-out',
+            routerLink: '/Preguntas'
+          },
+          {
+            label: 'Alternativas',
+            icon: 'pi pi-sign-out',
+            routerLink: '/Alternativas'
+          },
+          {
+            label: 'Cargo',
+            icon: 'pi pi-sign-out',
+            routerLink: '/Cargo'
+          },
         ]
       },
       {

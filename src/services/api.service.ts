@@ -6,104 +6,126 @@ import { especialidad } from "../models/especialidad.model";
 import { usuario } from "../models/usuario.models";
 import { modulo } from "../models/modulo.model";
 import { pregunta } from "../models/pregunta.model";
+import { tema } from "../models/tema.model";
 
 @Injectable({
   providedIn: "root"
 })
 
 export class ApiService {
-    private ApiUrl = "http://127.0.0.1:8000/api/"; // URL to web api
-    private httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-    };
-    constructor(private http: HttpClient) {
-    }
+  private ApiUrl = "http://127.0.0.1:8000/api/"; // URL to web api
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+  constructor(private http: HttpClient) {
+  }
 
-    // CRUD Modulo
-    public getModulo(): Observable<modulo[]> {
-        return this.http.get<modulo[]>(this.ApiUrl + 'Modulo');
-    }
+  // CRUD Modulo
+  public getModulo(): Observable<modulo[]> {
+    return this.http.get<modulo[]>(this.ApiUrl + 'Modulo');
+  }
 
-    public deleteModulo(id:string): Observable<void>{
-        return this.http.delete<void>(this.ApiUrl + 'Modulo/' + id + "/");
-    }
+  public deleteModulo(id: string): Observable<void> {
+    return this.http.delete<void>(this.ApiUrl + 'Modulo/' + id + "/");
+  }
 
-    public putModulo(modulo:modulo): Observable<modulo>{
-        let body = JSON.stringify(modulo);
-        return this.http.put<modulo>(this.ApiUrl + 'Modulo/' + modulo.idModulo + "/",body,this.httpOptions);
-    }
+  public putModulo(modulo: modulo): Observable<modulo> {
+    let body = JSON.stringify(modulo);
+    return this.http.put<modulo>(this.ApiUrl + 'Modulo/' + modulo.idModulo + "/", body, this.httpOptions);
+  }
 
-    public postModulo(modulo:modulo): Observable<modulo>{
-        let body = JSON.stringify(modulo);
-        return this.http.post<modulo>(this.ApiUrl + 'Modulo/',body,this.httpOptions);
-    }
+  public postModulo(modulo: modulo): Observable<modulo> {
+    let body = JSON.stringify(modulo);
+    return this.http.post<modulo>(this.ApiUrl + 'Modulo/', body, this.httpOptions);
+  }
 
-    // CRUD Especialidad
-    public getEspecialidad(): Observable<especialidad[]> {
-        return this.http.get<especialidad[]>(this.ApiUrl + 'Especialidad');
-    }
+  public getModuloPersonales(id: string): Observable<modulo[]> {
+    return this.http.get<modulo[]>(this.ApiUrl + 'modulos/' + id + "/");
+  }
 
-    public deleteEspecialidad(id:string): Observable<void>{
-        return this.http.delete<void>(this.ApiUrl + 'Especialidad/' + id + "/");
-    }
+  // CRUD Especialidad
+  public getEspecialidad(): Observable<especialidad[]> {
+    return this.http.get<especialidad[]>(this.ApiUrl + 'Especialidad');
+  }
 
-    public putEspecialidad(especialidad:especialidad): Observable<especialidad>{
-        let body = JSON.stringify(modulo);
-        return this.http.put<especialidad>(this.ApiUrl + 'Especialidad/' + especialidad.idEspecialidad + "/",body,this.httpOptions);
-    }
+  public deleteEspecialidad(id: string): Observable<void> {
+    return this.http.delete<void>(this.ApiUrl + 'Especialidad/' + id + "/");
+  }
 
-    public postEspecialidad(especialidad:especialidad): Observable<especialidad>{
-        let body = JSON.stringify(especialidad);
-        return this.http.post<especialidad>(this.ApiUrl + 'Especialidad/',body,this.httpOptions);
-    }
+  public putEspecialidad(especialidad: especialidad): Observable<especialidad> {
+    let body = JSON.stringify(modulo);
+    return this.http.put<especialidad>(this.ApiUrl + 'Especialidad/' + especialidad.idEspecialidad + "/", body, this.httpOptions);
+  }
 
-    // CRUD Usuario
-    public postUsuario(usuario:usuario): Observable<usuario>{
-        let body = JSON.stringify(usuario);
-        return this.http.post<usuario>(this.ApiUrl + 'Usuario/',body,this.httpOptions);
-    }
+  public postEspecialidad(especialidad: especialidad): Observable<especialidad> {
+    let body = JSON.stringify(especialidad);
+    return this.http.post<especialidad>(this.ApiUrl + 'Especialidad/', body, this.httpOptions);
+  }
 
-    //CRUG PREGUNTA
+  // CRUD Usuario
+  public postUsuario(usuario: usuario): Observable<usuario> {
+    let body = JSON.stringify(usuario);
+    return this.http.post<usuario>(this.ApiUrl + 'Usuario/', body, this.httpOptions);
+  }
 
-     public getPregunta(): Observable<pregunta[]> {
-        return this.http.get<pregunta[]>(this.ApiUrl + 'Preguntas');
-    }
+  //CRUG PREGUNTA
 
+  public getPregunta(): Observable<pregunta[]> {
+    return this.http.get<pregunta[]>(this.ApiUrl + 'Preguntas');
+  }
 
+  public deletePregunta(idPregunta: string): Observable<void> {
+    return this.http.delete<void>(this.ApiUrl + 'Preguntas/' + idPregunta + "/");
+  }
 
-    public deletePregunta(idPregunta:string): Observable<void>{
-        return this.http.delete<void>(this.ApiUrl + 'Preguntas/' + idPregunta + "/");
-    }
+  public putPregunta(pregunta: pregunta): Observable<pregunta> {
+    let body = JSON.stringify(pregunta);
+    return this.http.put<pregunta>(this.ApiUrl + 'Preguntas/' + pregunta.idPregunta + "/", body, this.httpOptions);
+  }
 
-    public putPregunta(pregunta:pregunta): Observable<pregunta>{
-        let body = JSON.stringify(pregunta);
-        return this.http.put<pregunta>(this.ApiUrl + 'Preguntas/' + pregunta.idPregunta + "/",body,this.httpOptions);
-    }
+  public postPregunta(pregunta: pregunta): Observable<pregunta> {
+    let body = JSON.stringify(pregunta);
+    return this.http.post<pregunta>(this.ApiUrl + 'Preguntas/', body, this.httpOptions);
+  }
 
-    public postPregunta(pregunta:pregunta): Observable<pregunta>{
-        let body = JSON.stringify(pregunta);
-        return this.http.post<pregunta>(this.ApiUrl + 'Preguntas/',body,this.httpOptions);
-    }
+  //CRUG alternativa
+  public getAlternativa(): Observable<alternativa[]> {
+    return this.http.get<alternativa[]>(this.ApiUrl + 'Alternativa');
+  }
 
-     //CRUG alternativa
-      public getAlternativa(): Observable<alternativa[]> {
-        return this.http.get<alternativa[]>(this.ApiUrl + 'Alternativa');
-    }
+  public deleteAlternativa(id: string): Observable<void> {
+    return this.http.delete<void>(this.ApiUrl + 'Alternativa/' + id + "/");
+  }
 
-     public deleteAlternativa(id:string): Observable<void>{
-            return this.http.delete<void>(this.ApiUrl + 'Alternativa/' + id + "/");
-        }
-    
-        public putAlternativa(alternativa:alternativa): Observable<alternativa>{
-            let body = JSON.stringify(alternativa);
-            return this.http.put<alternativa>(this.ApiUrl + 'Alternativa/' + alternativa.idAlternativa+ "/",body,this.httpOptions);
-        }
-    
-        public postAlternativa(alternativa:alternativa): Observable<alternativa>{
-            let body = JSON.stringify(alternativa);
-            return this.http.post<alternativa>(this.ApiUrl + 'Alternativa/',body,this.httpOptions);
-        }
+  public putAlternativa(alternativa: alternativa): Observable<alternativa> {
+    let body = JSON.stringify(alternativa);
+    return this.http.put<alternativa>(this.ApiUrl + 'Alternativa/' + alternativa.idAlternativa + "/", body, this.httpOptions);
+  }
+
+  public postAlternativa(alternativa: alternativa): Observable<alternativa> {
+    let body = JSON.stringify(alternativa);
+    return this.http.post<alternativa>(this.ApiUrl + 'Alternativa/', body, this.httpOptions);
+  }
+
+  // CRUD Tema
+  public getTema(): Observable<tema[]> {
+    return this.http.get<tema[]>(this.ApiUrl + 'Temas');
+  }
+
+  public deleteTema(id: string): Observable<void> {
+    return this.http.delete<void>(this.ApiUrl + 'Temas/' + id + "/");
+  }
+
+  public putTema(tema: tema): Observable<tema> {
+    let body = JSON.stringify(tema);
+    return this.http.put<tema>(this.ApiUrl + 'Temas/' + tema.idTema + "/", body, this.httpOptions);
+  }
+
+  public postTema(tema: tema): Observable<tema> {
+    let body = JSON.stringify(tema);
+    return this.http.post<tema>(this.ApiUrl + 'Temas/', body, this.httpOptions);
+  }
 
 }

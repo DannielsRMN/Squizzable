@@ -5,13 +5,22 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from '../services/auth.guard';
 import { ModulosComponent } from './modulos/modulos.component';
 import { CRUDEspecializacionesComponent } from './crud-especializaciones/crud-especializaciones.component';
+import { CrudModulosComponent } from './crud-modulos/crud-modulos.component';
+import { PreguntaComponent } from './pregunta/pregunta.component';
+import { AlternativaComponent } from './alternativa/alternativa.component';
+import { ProgresoListComponent } from './progreso-list/progreso-list.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
 
   { path: "inicio", component: InicioComponent, canActivate: [AuthGuard] },
   { path: "Modulo", component: ModulosComponent, canActivate: [AuthGuard] },
-  { path: "Especialidad", component: CRUDEspecializacionesComponent, canActivate: [AuthGuard] },
+  { path: "Progreso", component: ProgresoListComponent, canActivate: [AuthGuard] },
+
+  { path: "Especialidades", component: CRUDEspecializacionesComponent, canActivate: [AuthGuard] },
+  { path: "Modulos", component: CrudModulosComponent, canActivate: [AuthGuard] },
+  { path: "Preguntas", component: PreguntaComponent, canActivate: [AuthGuard] },
+  { path: "Alternativas", component: AlternativaComponent, canActivate: [AuthGuard] },
 
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
 ];
