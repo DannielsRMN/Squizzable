@@ -5,6 +5,5 @@ export class tema{
   nombreTema: string
   contenido: string
   puntosTotal: number
-
-  modulo: modulo
+  modulo: number | modulo
 }
