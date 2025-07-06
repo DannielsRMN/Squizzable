@@ -3,9 +3,7 @@
 @import "primeicons/primeicons.css";
 
 html{
-  padding-right: 5px;
-  padding-left: 5px;
-  padding-top: 5px;
+  padding: 0px;
   width: 100vw;
   overflow-x: hidden;
 }

@@ -4,4 +4,5 @@ export class modulo {
   dificultad: string
 
   especialidad: number
+  nombreEspecialidad: string
 }

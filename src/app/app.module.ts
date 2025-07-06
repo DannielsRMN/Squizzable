@@ -11,6 +11,7 @@ import Material from '@primeng/themes/material';
 import { providePrimeNG } from 'primeng/config';
 
 // Menu
+import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { Menubar } from 'primeng/menubar';
@@ -37,6 +38,7 @@ import { AlternativaComponent } from './alternativa/alternativa.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
 import { ModulosComponent } from './modulos/modulos.component';
+import { CRUDEspecializacionesComponent } from './crud-especializaciones/crud-especializaciones.component';
 import { PreguntaComponent } from './pregunta/pregunta.component';
 import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
 
@@ -45,6 +47,7 @@ import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario
     AppComponent,
     InicioComponent,
     LoginComponent,
+    CRUDEspecializacionesComponent,
     ModulosComponent,
     RegistrarUsuarioComponent,
     PreguntaComponent,
@@ -53,8 +56,7 @@ import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario
   imports: [
     BrowserModule,
     AppRoutingModule,
-    Menubar,
-    ButtonModule,
+    MenubarModule,
     CardModule,
     TableModule,
     SliderModule,
@@ -70,6 +72,7 @@ import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario
     SelectModule,
     InputTextModule,
     DialogModule,
+    ButtonModule,
     DropdownModule,
   ],
   providers: [

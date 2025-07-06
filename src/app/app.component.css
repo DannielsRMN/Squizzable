@@ -5,15 +5,21 @@
   max-width: 100vw;
   width: 100%;
 
+  padding: 5px;
+}
+
+.contenido{
+  width: 100%;
 }
 
 .menu-left{
   display: flex;
   align-items: center;
+  padding-left: 10px;
 }
 
 .menu-left span{
-  margin-left: 15px;
+  padding-left: 20px;
 }
 
 .proyect{
@@ -44,7 +50,8 @@
 
 .botones{
   display: flex;
-  gap: 10px;
+  gap: 15px;
+  padding-right: 15px;
 }
 
 .proyect{

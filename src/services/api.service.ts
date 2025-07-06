@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { alternativa } from "../models/alternativa.model";
 import { especialidad } from "../models/especialidad.model";
+import { usuario } from "../models/usuario.models";
 import { modulo } from "../models/modulo.model";
 import { pregunta } from "../models/pregunta.model";
 
@@ -39,7 +40,7 @@ export class ApiService {
         return this.http.post<modulo>(this.ApiUrl + 'Modulo/',body,this.httpOptions);
     }
 
-    // CRUD Modulo
+    // CRUD Especialidad
     public getEspecialidad(): Observable<especialidad[]> {
         return this.http.get<especialidad[]>(this.ApiUrl + 'Especialidad');
     }
@@ -58,6 +59,11 @@ export class ApiService {
         return this.http.post<especialidad>(this.ApiUrl + 'Especialidad/',body,this.httpOptions);
     }
 
+    // CRUD Usuario
+    public postUsuario(usuario:usuario): Observable<usuario>{
+        let body = JSON.stringify(usuario);
+        return this.http.post<usuario>(this.ApiUrl + 'Usuario/',body,this.httpOptions);
+    }
 
     //CRUG PREGUNTA
 
@@ -99,6 +105,5 @@ export class ApiService {
             let body = JSON.stringify(alternativa);
             return this.http.post<alternativa>(this.ApiUrl + 'Alternativa/',body,this.httpOptions);
         }
-
 
 }
