@@ -34,7 +34,7 @@ export class CrudModulosComponent {
     nuevoModulo: boolean = true;
     moduloDialogo: modulo = new modulo();
 
-    dificultades: string[] = ['facil', 'intermedio', 'avanzado']
+    dificultades: string[] = ['Fácil', 'Intermedio', 'Avanzado']
     dif_select: string;
 
     especialidades: especialidad[];

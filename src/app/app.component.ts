@@ -88,7 +88,10 @@ export class AppComponent {
           },
           {
             label: 'Progreso',
-            icon: 'pi pi-search'
+            icon: 'pi pi-search',
+            command: () => {
+              this.router.navigate(['/Progreso'])
+            }
           },
           {
             label: 'Ranking General',
@@ -127,6 +130,11 @@ export class AppComponent {
             label: 'Alternativas',
             icon: 'pi pi-sign-out',
             routerLink: '/Alternativas'
+          },
+          {
+            label: 'Cargo',
+            icon: 'pi pi-sign-out',
+            routerLink: '/Cargo'
           },
         ]
       },

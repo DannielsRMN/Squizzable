@@ -14,15 +14,15 @@ export class InicioComponent {
 
   mostrarMenu=true
   nombreUsuario$: Observable<string | null>;
-  isSuperuser$: Observable<string | null>;
 
   constructor(private menu: MenuVisibilityService, private conf: AuthService){
     this.mostrarMenu=true
     this.nombreUsuario$ = this.conf.name$;
-    this.isSuperuser$ = this.conf.isSuperuser$;
   }
 
   ngOnInit(): void {
+    this.nombreUsuario$ = this.conf.name$;
+
     setTimeout(() => {
       this.menu.showMenu();
     }, 0);

@@ -66,6 +66,36 @@ export class AuthService {
     return localStorage.getItem('admin');
   }
 
+  private cargo = new BehaviorSubject<string | null>(localStorage.getItem('cargo'));
+  public cargo$: Observable<string | null> = this.cargo.asObservable();
+
+  obtenerCargo(username: string, password: string) {
+    const headers = { 'x-api-key': 'jnxAAq7a65wzXyQ3qPPF' }
+    this.http.post<{ cargo: string }>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
+      this.isSuperuser.next(respuesta.cargo);
+      localStorage.setItem('cargo', respuesta.cargo);
+    });
+  }
+
+  returnCargo(){
+    return localStorage.getItem('cargo');
+  }
+
+  private id = new BehaviorSubject<string | null>(localStorage.getItem('id'));
+  public id$: Observable<string | null> = this.id.asObservable();
+
+  obtenerId(username: string, password: string) {
+    const headers = { 'x-api-key': 'jnxAAq7a65wzXyQ3qPPF' }
+    this.http.post<{ user_id: number }>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
+      this.id.next(respuesta.user_id.toString());
+      localStorage.setItem('id', respuesta.user_id.toString());
+    });
+  }
+
+  returnId(){
+    return localStorage.getItem('id');
+  }
+
   areYouLogged() {
     // Da como resultado, verdadero o falso. Si el token tiene valor y este es diferente de nulo, significa que está logueado. En caso no tenga valor, significa que no está logueado.
     return this.token.value !== null;
@@ -76,6 +106,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('name');
     localStorage.removeItem('admin');
+    localStorage.removeItem('cargo');
     this.router.navigate(['/login']);
   }
 }

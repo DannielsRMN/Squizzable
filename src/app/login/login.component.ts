@@ -24,6 +24,7 @@ export class LoginComponent {
     this.inicioSesion.login(this.username, this.password);
     this.inicioSesion.obtenerNombre(this.username, this.password);
     this.inicioSesion.obtenerAdmin(this.username, this.password);
+    this.inicioSesion.obtenerCargo(this.username, this.password);
   }
 
   ngOnInit(): void {
