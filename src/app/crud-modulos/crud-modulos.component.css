@@ -1,0 +1,9 @@
+.body{
+    width: 85vw;
+    padding: 5px;
+}
+
+.intro{
+    display: flex;
+    justify-content: space-between;
+}
