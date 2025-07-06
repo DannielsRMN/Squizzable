@@ -73,7 +73,7 @@ export class ApiService {
 
     public putPregunta(pregunta:pregunta): Observable<pregunta>{
         let body = JSON.stringify(pregunta);
-        return this.http.put<pregunta>(this.ApiUrl + 'Preguntas/' + pregunta.idPregunta + "Preguntas/",body,this.httpOptions);
+        return this.http.put<pregunta>(this.ApiUrl + 'Preguntas/' + pregunta.idPregunta + "/",body,this.httpOptions);
     }
 
     public postPregunta(pregunta:pregunta): Observable<pregunta>{

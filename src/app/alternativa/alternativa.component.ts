@@ -46,12 +46,16 @@ export class AlternativaComponent {
   }
 
   editarAlternativa(alternativa:alternativa){
+    this.visible=true;
+    this.nuevoAlternativa=false;
+    this.alternativaDialogo=alternativa;
 
   }
 
   eliminarAlternativa(alternativa:alternativa){
-    this.api.deleteAlternativa(alternativa.idAlternativa.toString()).subscribe()
-    this.obtenerAlternativa()
+    this.api.deleteAlternativa(alternativa.idAlternativa.toString()).subscribe(()=>{
+     this.obtenerAlternativa();
+    });
   }
 
   guardarAlternativa(){

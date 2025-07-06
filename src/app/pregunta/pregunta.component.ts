@@ -22,7 +22,7 @@ preguntaDialogo:pregunta= new pregunta();
 temas:tema[];
 temaSelecionado:tema;
 
-obtenerProducto(){
+obtenerPregunta(){
   this.api.getPregunta().subscribe(res=>{
     this.preguntas=res;
   })
@@ -36,18 +36,23 @@ obtenerTema(){
   });
 }
   ngOnInit(){
-this.obtenerProducto();
+this.obtenerPregunta();
 this.obtenerTema();
 
   }
 
-  editarPregunta(poducto: pregunta){
+  editarPregunta(pregunta: pregunta){
+    this.visible=true;
+    this.nuevoPregunta=false,
+    this.preguntaDialogo=pregunta;
  
 
   }
 
-  eliminarPregunta(p: pregunta){
-this.api.deletePregunta(p.idPregunta.toString()).subscribe()
+  eliminarPregunta(pregunta: pregunta){
+this.api.deletePregunta(pregunta.idPregunta.toString()).subscribe(()=>{
+  this.obtenerPregunta();
+})
   
   }
  
@@ -62,11 +67,11 @@ guardarPregunta(){
   if(this.nuevoPregunta){
 
     this.api.postPregunta(this.preguntaDialogo).subscribe(res=>{
-      this.obtenerProducto();
+      this.obtenerPregunta();
     });
   }else {
     this.api.putPregunta(this.preguntaDialogo).subscribe(res=>{
-      this.obtenerProducto();
+      this.obtenerPregunta();
     });
   }
   this.visible=false;
