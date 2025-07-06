@@ -13,7 +13,7 @@ import Material from '@primeng/themes/material';
 import Aura from '@primeng/themes/aura';
 
 // Menu
-import { Menubar } from 'primeng/menubar';
+import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 
@@ -31,14 +31,13 @@ import { TableModule } from 'primeng/table';
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MenubarModule } from 'primeng/menubar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
 import { IMAGE_CONFIG } from '@angular/common';
 import { TokenInterceptor } from '../services/token.interceptor';
 import { ModulosComponent } from './modulos/modulos.component';
-import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
+import { CRUDEspecializacionesComponent } from './crud-especializaciones/crud-especializaciones.component';
 
 
 @NgModule({
@@ -46,14 +45,13 @@ import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario
     AppComponent,
     InicioComponent,
     LoginComponent,
-    ModulosComponent,
-    RegistrarUsuarioComponent
+    CRUDEspecializacionesComponent,
+    ModulosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    Menubar,
-    ButtonModule,
+    MenubarModule,
     CardModule,
     TableModule,
     SliderModule,
@@ -68,7 +66,8 @@ import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario
     TagModule,
     SelectModule,
     InputTextModule,
-    DialogModule
+    DialogModule,
+    ButtonModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

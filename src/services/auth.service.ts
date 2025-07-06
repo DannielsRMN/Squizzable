@@ -72,8 +72,10 @@ export class AuthService {
   }
 
   logOff() {
-    this.token.next(null);                      // Actualiza el observable
-    localStorage.removeItem('token');           // Limpia el almacenamiento
+    this.token.next(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('admin');
     this.router.navigate(['/login']);
   }
 }
