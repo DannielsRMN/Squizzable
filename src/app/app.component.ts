@@ -83,7 +83,7 @@ export class AppComponent {
             label: 'Módulos',
             icon: 'pi pi-plus',
             command: () => {
-              this.router.navigate(['/modulo'])
+              this.router.navigate(['/Modulo'])
             }
           },
           {
@@ -98,6 +98,21 @@ export class AppComponent {
             label: 'Ranking Modular',
             icon: 'pi pi-cog'
           },
+        ]
+      },
+      {
+        label: 'Administrador',
+        items: [
+          {
+            label: 'Modulo',
+            icon: 'pi pi-cog',
+            routerLink: '/Modulo'
+          },
+          {
+            label: 'Especialidad',
+            icon: 'pi pi-sign-out',
+            routerLink: '/Especialidad'
+          }
         ]
       },
       {
