@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { modulo } from '../../models/modulo.model';
 import { especialidad } from '../../models/especialidad.model';
+import { modulo } from '../../models/modulo.model';
 import { ApiService } from '../../services/api.service';
 import { MenuVisibilityService } from '../../services/visible.service';
 
