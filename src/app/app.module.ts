@@ -52,7 +52,7 @@ import { ProgresoListComponent } from './progreso-list/progreso-list.component';
     PreguntaComponent,
     AlternativaComponent,
     CrudModulosComponent,
-    ProgresoListComponent
+    ProgresoListComponent,
   ],
   imports: [
     BrowserModule,
