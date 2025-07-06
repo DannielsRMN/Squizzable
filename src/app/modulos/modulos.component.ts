@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { modulo } from '../../models/modulo.model';
 import { especialidad } from '../../models/especialidad.model';
+import { modulo } from '../../models/modulo.model';
 import { ApiService } from '../../services/api.service';
+import { MenuVisibilityService } from '../../services/visible.service';
 
 @Component({
   selector: 'app-modulos',
@@ -12,12 +13,25 @@ import { ApiService } from '../../services/api.service';
 })
 export class ModulosComponent {
 
-  constructor(private api : ApiService){}
+  constructor(private api: ApiService, private menu: MenuVisibilityService) {
+    this.mostrarMenu = true;
+  }
+
+  mostrarMenu = true
+
+  ngOnInit() {
+    this.obtenerModulos();
+    this.obtenerEspecialidades();
+
+    setTimeout(() => {
+      this.menu.showMenu();
+    }, 0);
+  }
 
   modulos: modulo[];
-  visible:boolean = false;
-  nuevoModulo:boolean = true;
-  moduloDialogo:modulo = new modulo();
+  visible: boolean = false;
+  nuevoModulo: boolean = true;
+  moduloDialogo: modulo = new modulo();
 
   dificultades: string[] = ['facil', 'intermedio', 'avanzado']
   dif_select: string;
@@ -25,40 +39,40 @@ export class ModulosComponent {
   especialidades: especialidad[];
   espe_select: especialidad;
 
-  abrirDialogo(){
+  abrirDialogo() {
     this.visible = true;
   }
 
-  obtenerModulos(){
+  obtenerModulos() {
     this.api.getModulo().subscribe(res => {
       this.modulos = res;
     })
   }
 
-  obtenerEspecialidades(){
+  obtenerEspecialidades() {
     this.api.getEspecialidad().subscribe(res => {
       this.especialidades = res;
     })
   }
 
-  ngOnInit(){
-    this.obtenerModulos();
-    this.obtenerEspecialidades();
+  editarModulo(modulo: modulo) {
+    this.visible = true;
+    this.nuevoModulo = false;
+    this.moduloDialogo = modulo;
+    this.espe_select = this.especialidades.find(t => t.idEspecialidad === modulo.especialidad)!;
   }
 
-  editarModulo(modulo:modulo){
-
+  eliminarModulo(modulo: modulo) {
+    this.api.deleteModulo(modulo.idModulo.toString()).subscribe(() => {
+      this.obtenerModulos();
+    });
   }
 
-  eliminarModulo(modulo:modulo){
-    this.api.deleteModulo(modulo.idModulo.toString()).subscribe()
-    this.obtenerModulos()
-  }
-
-  guardarModulo(){
+  guardarModulo() {
     this.moduloDialogo.especialidad = this.espe_select.idEspecialidad;
     this.moduloDialogo.dificultad = this.dif_select;
-    if (this.nuevoModulo){
+
+    if (this.nuevoModulo) {
       this.api.postModulo(this.moduloDialogo).subscribe(res => {
         this.obtenerModulos();
       });
@@ -67,7 +81,9 @@ export class ModulosComponent {
         this.obtenerModulos();
       });
     }
-    this.visible = false;
-  }
 
+    this.visible = false
+  }
 }
+
+

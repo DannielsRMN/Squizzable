@@ -1,59 +1,62 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 // Estilo General
-import { ApplicationConfig } from '@angular/core';
-import { providePrimeNG } from 'primeng/config';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import Material from '@primeng/themes/material';
-import Aura from '@primeng/themes/aura';
+import { providePrimeNG } from 'primeng/config';
 
 // Menu
-import { Menubar } from 'primeng/menubar';
+import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { Menubar } from 'primeng/menubar';
 
 // Tabla
-import { ToastModule } from 'primeng/toast';
-import { TagModule } from 'primeng/tag';
-import { SelectModule } from 'primeng/select';
-import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectModule } from 'primeng/select';
+import { TagModule } from 'primeng/tag';
+import { ToastModule } from 'primeng/toast';
 
 // Componente
-import { InicioComponent } from './inicio/inicio.component';
-import { LoginComponent } from './login/login.component';
-import { TableModule } from 'primeng/table';
-import { SliderModule } from 'primeng/slider';
-import { FormsModule } from '@angular/forms';
+import { IMAGE_CONFIG } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropdownModule } from 'primeng/dropdown';
+import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MenuModule } from 'primeng/menu';
-import { IMAGE_CONFIG } from '@angular/common';
+import { SliderModule } from 'primeng/slider';
+import { TableModule } from 'primeng/table';
 import { TokenInterceptor } from '../services/token.interceptor';
+import { AlternativaComponent } from './alternativa/alternativa.component';
+import { InicioComponent } from './inicio/inicio.component';
+import { LoginComponent } from './login/login.component';
 import { ModulosComponent } from './modulos/modulos.component';
+import { CRUDEspecializacionesComponent } from './crud-especializaciones/crud-especializaciones.component';
+import { PreguntaComponent } from './pregunta/pregunta.component';
 import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     LoginComponent,
+    CRUDEspecializacionesComponent,
     ModulosComponent,
-    RegistrarUsuarioComponent
+    RegistrarUsuarioComponent,
+    PreguntaComponent,
+    AlternativaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    Menubar,
-    ButtonModule,
+    MenubarModule,
     CardModule,
     TableModule,
     SliderModule,
@@ -68,7 +71,9 @@ import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario
     TagModule,
     SelectModule,
     InputTextModule,
-    DialogModule
+    DialogModule,
+    ButtonModule,
+    DropdownModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
