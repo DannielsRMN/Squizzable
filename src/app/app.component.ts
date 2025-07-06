@@ -126,11 +126,6 @@ export class AppComponent {
             icon: 'pi pi-sign-out',
             routerLink: '/Alternativas'
           },
-          {
-            label: 'Cargo',
-            icon: 'pi pi-sign-out',
-            routerLink: '/Cargo'
-          },
         ]
       },
       {
