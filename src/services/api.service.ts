@@ -41,6 +41,10 @@ export class ApiService {
     return this.http.post<modulo>(this.ApiUrl + 'Modulo/', body, this.httpOptions);
   }
 
+  public getModuloPersonales(id: string): Observable<modulo[]> {
+    return this.http.get<modulo[]>(this.ApiUrl + 'modulos/' + id + "/");
+  }
+
   // CRUD Especialidad
   public getEspecialidad(): Observable<especialidad[]> {
     return this.http.get<especialidad[]>(this.ApiUrl + 'Especialidad');
