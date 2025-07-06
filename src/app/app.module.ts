@@ -11,7 +11,6 @@ import Material from '@primeng/themes/material';
 import { providePrimeNG } from 'primeng/config';
 
 // Menu
-import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { Menubar } from 'primeng/menubar';
@@ -40,7 +39,8 @@ import { LoginComponent } from './login/login.component';
 import { ModulosComponent } from './modulos/modulos.component';
 import { CRUDEspecializacionesComponent } from './crud-especializaciones/crud-especializaciones.component';
 import { PreguntaComponent } from './pregunta/pregunta.component';
-import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
+import { CrudModulosComponent } from './crud-modulos/crud-modulos.component';
+import { ProgresoListComponent } from './progreso-list/progreso-list.component';
 
 @NgModule({
   declarations: [
@@ -49,9 +49,10 @@ import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario
     LoginComponent,
     CRUDEspecializacionesComponent,
     ModulosComponent,
-    RegistrarUsuarioComponent,
     PreguntaComponent,
-    AlternativaComponent
+    AlternativaComponent,
+    CrudModulosComponent,
+    ProgresoListComponent
   ],
   imports: [
     BrowserModule,

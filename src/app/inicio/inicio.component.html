@@ -1,9 +1,36 @@
-<H2>Inicio</H2>
+<div class="container">
 
-<div *ngIf="nombreUsuario$ | async as userName">
-  Bienvenido, {{ userName }}!
-</div>
+  <div *ngIf="nombreUsuario$ | async as userName" class="texto">
+    <h3>Bienvenido a Squizzable, {{ userName }}</h3>
+  </div>
 
-<div *ngIf="isSuperuser$ | async as isSuperuser">
+  <!-- <div *ngIf="isSuperuser$ | async as isSuperuser">
   Usted es, {{ isSuperuser }}!
+</div> -->
+
+  <div class="intro">
+    <div class="imagen">
+      <img src="/Fondo.png" alt="Imagen de Mopi">
+    </div>
+
+    <div class="cartillas">
+      <p-card>
+        <h2>¿Qué es Squizzable?</h2>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam numquam optio inventore! Veniam id optio quos
+        ipsam suscipit incidunt quasi labore veritatis aliquam, molestias voluptates numquam. Repellat nihil itaque
+        doloribus?
+      </p-card>
+
+      <p-card>
+        <h2>Nuestras ventajas</h2>
+        <ul>
+          <li>Fácil de usar</li>
+          <li>Interfaz amigable</li>
+          <li>Acceso a una amplia variedad de módulos</li>
+          <li>Personalización de preguntas y respuestas</li>
+        </ul>
+      </p-card>
+    </div>
+  </div>
+
 </div>

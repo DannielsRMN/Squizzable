@@ -106,13 +106,23 @@ export class AppComponent {
           {
             label: 'Modulo',
             icon: 'pi pi-cog',
-            routerLink: '/Modulo'
+            routerLink: '/Modulos'
           },
           {
             label: 'Especialidad',
             icon: 'pi pi-sign-out',
-            routerLink: '/Especialidad'
-          }
+            routerLink: '/Especialidades'
+          },
+          {
+            label: 'Preguntas',
+            icon: 'pi pi-sign-out',
+            routerLink: '/Preguntas'
+          },
+          {
+            label: 'Alternativas',
+            icon: 'pi pi-sign-out',
+            routerLink: '/Alternativas'
+          },
         ]
       },
       {
