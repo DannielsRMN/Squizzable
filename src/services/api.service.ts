@@ -69,7 +69,7 @@ export class ApiService {
   //CRUG PREGUNTA
 
   public getPregunta(): Observable<pregunta[]> {
-    return this.http.get<pregunta[]>(this.ApiUrl + 'Preguntas');
+    return this.http.get<pregunta[]>(this.ApiUrl + 'Preguntas/');
   }
 
   public deletePregunta(idPregunta: string): Observable<void> {
