@@ -7,7 +7,6 @@ import { usuario } from "../models/usuario.models";
 import { modulo } from "../models/modulo.model";
 import { pregunta } from "../models/pregunta.model";
 import { tema } from "../models/tema.model";
-import { cargo } from "../models/cargo.model";
 
 @Injectable({
   providedIn: "root"
@@ -40,6 +39,10 @@ export class ApiService {
   public postModulo(modulo: modulo): Observable<modulo> {
     let body = JSON.stringify(modulo);
     return this.http.post<modulo>(this.ApiUrl + 'Modulo/', body, this.httpOptions);
+  }
+
+  public getModuloPersonales(id: string): Observable<modulo[]> {
+    return this.http.get<modulo[]>(this.ApiUrl + 'modulos/' + id + "/");
   }
 
   // CRUD Especialidad
@@ -123,24 +126,6 @@ export class ApiService {
   public postTema(tema: tema): Observable<tema> {
     let body = JSON.stringify(tema);
     return this.http.post<tema>(this.ApiUrl + 'Temas/', body, this.httpOptions);
-  }
-
-  public getCargo(): Observable<cargo[]> {
-    return this.http.get<cargo[]>(this.ApiUrl + 'Cargo/');
-  }
-
-  public deleteCargo(id: string): Observable<void> {
-    return this.http.delete<void>(this.ApiUrl + 'Cargo/' + id + '/');
-  }
-
-  public putCargo(cargo: cargo): Observable<cargo> {
-    const body = JSON.stringify(cargo);
-    return this.http.put<cargo>(this.ApiUrl + 'Cargo/' + cargo.idCargo + '/', body, this.httpOptions);
-  }
-
-  public postCargo(cargo: cargo): Observable<cargo> {
-    const body = JSON.stringify(cargo);
-    return this.http.post<cargo>(this.ApiUrl + 'Cargo/', body, this.httpOptions);
   }
 
 }

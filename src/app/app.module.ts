@@ -41,7 +41,6 @@ import { CRUDEspecializacionesComponent } from './crud-especializaciones/crud-es
 import { PreguntaComponent } from './pregunta/pregunta.component';
 import { CrudModulosComponent } from './crud-modulos/crud-modulos.component';
 import { ProgresoListComponent } from './progreso-list/progreso-list.component';
-import { CargoComponent } from './cargo/cargo.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +53,6 @@ import { CargoComponent } from './cargo/cargo.component';
     AlternativaComponent,
     CrudModulosComponent,
     ProgresoListComponent,
-    CargoComponent
   ],
   imports: [
     BrowserModule,
