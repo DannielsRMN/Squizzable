@@ -5,11 +5,11 @@
       <p>Ingrese sus credenciales</p>
 
       <form (ngSubmit)="login()" #loginForm="ngForm">
-        <label for="username">Correo Electrónico</label>
+        <label for="username">Nombre de Usuario</label>
         <div class="input-group">
           <i class="pi pi-user icon-left"></i>
-          <input type="email" name="username" id="username" [(ngModel)]="username" pInputText
-            placeholder="Correo Electrónico" autocomplete="username" required />
+          <input type="username" name="username" id="username" [(ngModel)]="username" pInputText
+            placeholder="Nombre de Usuario" autocomplete="username" required />
         </div>
 
         <label for="password">Contraseña</label>
