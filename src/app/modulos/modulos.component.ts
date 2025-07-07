@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { especialidad } from '../../models/especialidad.model';
 import { modulo } from '../../models/modulo.model';
 import { ApiService } from '../../services/api.service';
-import { MenuVisibilityService } from '../../services/visible.service';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modulos',
@@ -15,37 +15,38 @@ import { Observable } from 'rxjs';
 })
 export class ModulosComponent {
 
-  constructor(private api: ApiService, private menu: MenuVisibilityService, private conf: AuthService) {
+  constructor(private api: ApiService, private conf: AuthService, private router: Router) {
     this.mostrarMenu = true;
-    this.cargo$ = this.conf.cargo$;
   }
-
-  cargo$: Observable<string | null>;
-
   mostrarMenu = true
+  espeID: string = localStorage.getItem('especialidad') || '';
+  admin: string = localStorage.getItem('is_superuser') || '';
 
   ngOnInit() {
     this.obtenerModulos();
-    this.obtenerEspecialidades();
-
-    setTimeout(() => {
-      this.menu.showMenu();
-    }, 0);
+    console.log(this.espeID);
+    console.log(this.admin);
   }
 
   modulos: modulo[];
   especialidades: especialidad[];
 
   obtenerModulos() {
-    this.api.getModulo().subscribe(res => {
-      this.modulos = res;
-    })
+    if (this.admin == 'false') {
+      this.espeID = '1';
+      this.api.getModuloPersonales(this.espeID).subscribe(res => {
+        this.modulos = res;
+      });
+    } else {
+      this.api.getModulo().subscribe(res => {
+        this.modulos = res;
+      });
+    }
   }
 
-  obtenerEspecialidades() {
-    this.api.getEspecialidad().subscribe(res => {
-      this.especialidades = res;
-    })
+  redirigirTemas(id: number) {
+    let moduloSeleccionado = id;
+    this.router.navigate(['/TemasModulo', moduloSeleccionado,'/']);
   }
 }
 

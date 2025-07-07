@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="intro">
+    <h2>Ranking Filtrado por Módulos</h2>
+    <p-dropdown class="select" [options]="listEspecialidad" [(ngModel)]="id" optionValue="idEspecialidad" optionLabel="nombreEspecialidad" placeholder="Seleccione una especialidad" (onChange)="onEspecialidadChange($event)"></p-dropdown>
+  </div>
+
+  <p-table [value]="usuariosClasificados" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 5%;">Nro.</th>
+        <th>Usuario</th>
+        <th style="width: 10%; text-align: center;">Puntos</th>
+        <th style="width: 20%">Fecha de Ingreso</th>
+        <th style="width: 15%; text-align: center;">Especialidad</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-usuario let-rowIndex="rowIndex">
+      <tr>
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ usuario.username }}</td>
+        <td class="bta">{{ usuario.puntos }}</td>
+        <td>{{ usuario.date_joined | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>
+          <p-tag class="bt" [ngClass]="{'gray-background': !usuario.encargado}" value="{{ usuario.encargado ? usuario.encargado : 'No asignada' }}"></p-tag>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>

@@ -1,31 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 import { MenuItem } from 'primeng/api';
-import { AuthService } from '../services/auth.service';
-import { Observable, Subscription } from 'rxjs';
-
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'app-platilla-menu',
   standalone: false,
-  styleUrl: './app.component.css',
-  providers: [AuthService]
+  templateUrl: './platilla-menu.component.html',
+  styleUrl: './platilla-menu.component.css',
+  providers: [ApiService]
 })
-export class AppComponent {
+export class PlatillaMenuComponent {
 
   constructor(private login: AuthService, private router: Router, private conf: AuthService) {
   }
 
-  // Mostra Menu
-  menuVisible: boolean = true;
-  private menuSubscription: Subscription = new Subscription();
+  // Admin
+  admin: string | null = null;
 
   // Menú Bar
   items: MenuItem[] | undefined;
 
   // Menú Vertical
   vertical: MenuItem[] | undefined;
+  vertical2: MenuItem[] | undefined;
 
   // Modo Oscuro
   isDarkMode = false;
@@ -40,16 +39,12 @@ export class AppComponent {
     this.loading = true;
     setTimeout(() => {
       this.loading = false
-    }, 100);
+    }, 200);
     console.log("D/Tema cambiado")
   }
 
   logOut() {
     this.login.logOff()
-  }
-
-  ngOnDestroy(){
-    this.menuSubscription.unsubscribe();
   }
 
   ngOnInit() {
@@ -61,8 +56,8 @@ export class AppComponent {
     }
 
     // Admin
-    let admin = localStorage.getItem('is_superuser');
-    console.log("Admin: " + admin);
+    this.admin = localStorage.getItem('is_superuser');
+    console.log("Admin: " + this.admin);
 
     this.items = []
 
@@ -74,28 +69,28 @@ export class AppComponent {
             label: 'Módulos',
             icon: 'pi pi-plus',
             command: () => {
-              this.router.navigate(['/Squizable/Modulo'])
+              this.router.navigate(['/Modulo'])
             }
           },
           {
             label: 'Progreso',
             icon: 'pi pi-search',
             command: () => {
-              this.router.navigate(['/Squizable/Progreso'])
+              this.router.navigate(['/Progreso'])
             }
           },
           {
             label: 'Ranking General',
             icon: 'pi pi-cog',
             command: () => {
-              this.router.navigate(['/Squizable/RankingGeneral'])
+              this.router.navigate(['/RankingGeneral'])
             }
           },
           {
             label: 'Ranking Modular',
             icon: 'pi pi-cog',
             command: () => {
-              this.router.navigate(['/Squizable/RankingModular'])
+              this.router.navigate(['/RankingModular'])
             }
           },
         ]
@@ -106,27 +101,79 @@ export class AppComponent {
           {
             label: 'Modulo',
             icon: 'pi pi-cog',
-            routerLink: '/Squizable/Modulos'
+            routerLink: '/Modulos'
           },
-           {
+          {
             label: 'Temas',
             icon: 'pi pi-cog',
-            routerLink: '/Squizable/Temas'
+            routerLink: '/Temas'
           },
           {
             label: 'Especialidad',
             icon: 'pi pi-sign-out',
-            routerLink: '/Squizable/Especialidades'
+            routerLink: '/Especialidades'
           },
           {
             label: 'Preguntas',
             icon: 'pi pi-sign-out',
-            routerLink: '/Squizable/Preguntas'
+            routerLink: '/Preguntas'
           },
           {
             label: 'Alternativas',
             icon: 'pi pi-sign-out',
-            routerLink: '/Squizable/Alternativas'
+            routerLink: '/Alternativas'
+          },
+        ]
+      },
+      {
+        label: 'Sesion',
+        items: [
+          {
+            label: 'Cuenta',
+            icon: 'pi pi-cog'
+          },
+          {
+            label: 'Cerrar Sesión',
+            icon: 'pi pi-sign-out',
+            command: () => {
+              this.logOut()
+            }
+          }
+        ]
+      }
+    ];
+
+    this.vertical2 = [
+      {
+        label: 'Opciones',
+        items: [
+          {
+            label: 'Módulos',
+            icon: 'pi pi-plus',
+            command: () => {
+              this.router.navigate(['/Modulo'])
+            }
+          },
+          {
+            label: 'Progreso',
+            icon: 'pi pi-search',
+            command: () => {
+              this.router.navigate(['/Progreso'])
+            }
+          },
+          {
+            label: 'Ranking General',
+            icon: 'pi pi-cog',
+            command: () => {
+              this.router.navigate(['/RankingGeneral'])
+            }
+          },
+          {
+            label: 'Ranking Modular',
+            icon: 'pi pi-cog',
+            command: () => {
+              this.router.navigate(['/RankingModular'])
+            }
           },
         ]
       },

@@ -4,11 +4,11 @@
 <p-table [value]="alternativas" [tableStyle]="{'min-width': '75rem'}">
     <ng-template #header>
         <tr>
-            <th style="width:20%">ID</th>
-            <th style="width:20%">ALTERNATIVA</th>
-            <th style="width:20%">ESCORRECTO</th>
-            <th style="width:20%">PREGUNTA</th>
-            <th style="width:20%">Acciones</th>
+            <th style="width:1%">ID</th>
+            <th style="width:auto">Alternativa</th>
+            <th style="width:1%">Estado</th>
+            <th style="width:30%">Pregunta</th>
+            <th style="width:11%">Acciones</th>
         </tr>
     </ng-template>
     <ng-template #body let-alternativa let-ri="rowIndex">
@@ -23,7 +23,7 @@
                 {{ alternativa.esCorrecta }}
             </td>
             <td>
-                {{ alternativa.pregunta }}
+                {{ alternativa.pregunta_ref }}
             </td>
             <td>
                 <div class="flex items-center justify-center gap-2">
@@ -75,7 +75,7 @@
 
     </div>
 
-   
+
     <div class="flex items-center gap-4 mb-4">
         <label for="pregunta" class="font-semibold w-24">Pregunta</label>
         <p-select id="pregunta" [options]="preguntas" [(ngModel)]="pregun_select" optionLabel="pregunta" placeholder="Seleccione una Pregunta" class="w-full md:w-56" />

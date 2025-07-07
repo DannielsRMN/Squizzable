@@ -3,6 +3,6 @@ export class alternativa {
   alternativa: string;
   esCorrecta: boolean;
 
-  
-  pregunta: number; 
+  pregunta: number;
+  pregunta_ref: number;
 }

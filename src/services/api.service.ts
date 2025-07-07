@@ -7,6 +7,7 @@ import { usuario } from "../models/usuario.models";
 import { modulo } from "../models/modulo.model";
 import { pregunta } from "../models/pregunta.model";
 import { tema } from "../models/tema.model";
+import { progreso } from "../models/progreso.model";
 
 @Injectable({
   providedIn: "root"
@@ -70,7 +71,15 @@ export class ApiService {
     return this.http.post<usuario>(this.ApiUrl + 'Usuario/', body, this.httpOptions);
   }
 
-  //CRUG PREGUNTA
+  public getUsuariosClasificados(): Observable<usuario[]> {
+    return this.http.get<usuario[]>(this.ApiUrl + 'clasificacion/');
+  }
+
+  public getUsuariosClasificadosModular(id: string): Observable<usuario[]> {
+    return this.http.get<usuario[]>(this.ApiUrl + 'clasificacion/' + id + "/");
+  }
+
+    //CRUG PREGUNTA
 
   public getPregunta(): Observable<pregunta[]> {
     return this.http.get<pregunta[]>(this.ApiUrl + 'Preguntas/');
@@ -126,6 +135,15 @@ export class ApiService {
   public postTema(tema: tema): Observable<tema> {
     let body = JSON.stringify(tema);
     return this.http.post<tema>(this.ApiUrl + 'Temas/', body, this.httpOptions);
+  }
+
+  public getTemaXModulo(id: string): Observable<tema[]> {
+    return this.http.get<tema[]>(this.ApiUrl + 'Temas/' + id + '/');
+  }
+
+  // CRUD Progreso
+  public getProgresosPersonales(id: string): Observable<progreso[]> {
+    return this.http.get<progreso[]>(this.ApiUrl + 'Progresos/' + id + '/');
   }
 
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MenuVisibilityService } from '../../services/visible.service';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 
@@ -13,19 +12,14 @@ import { Observable } from 'rxjs';
 export class InicioComponent {
 
   mostrarMenu=true
-  nombreUsuario$: Observable<string | null>;
+  nombreUsuario: string | null;
 
-  constructor(private menu: MenuVisibilityService, private conf: AuthService){
-    this.mostrarMenu=true
-    this.nombreUsuario$ = this.conf.name$;
+  constructor(private conf: AuthService){
   }
 
   ngOnInit(): void {
-    this.nombreUsuario$ = this.conf.name$;
-
-    setTimeout(() => {
-      this.menu.showMenu();
-    }, 0);
+    let nombre = localStorage.getItem('username');
+    this.nombreUsuario = nombre;
   }
 
 }

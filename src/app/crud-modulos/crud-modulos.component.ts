@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { MenuVisibilityService } from '../../services/visible.service';
 import { modulo } from '../../models/modulo.model';
 import { especialidad } from '../../models/especialidad.model';
 
@@ -14,7 +13,7 @@ import { especialidad } from '../../models/especialidad.model';
 })
 export class CrudModulosComponent {
 
-  constructor(private api: ApiService, private menu: MenuVisibilityService) {
+  constructor(private api: ApiService) {
       this.mostrarMenu = true;
     }
 
@@ -23,10 +22,6 @@ export class CrudModulosComponent {
     ngOnInit() {
       this.obtenerModulos();
       this.obtenerEspecialidades();
-
-      setTimeout(() => {
-        this.menu.showMenu();
-      }, 0);
     }
 
     modulos: modulo[];

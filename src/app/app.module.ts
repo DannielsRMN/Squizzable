@@ -42,6 +42,10 @@ import { PreguntaComponent } from './pregunta/pregunta.component';
 import { CrudModulosComponent } from './crud-modulos/crud-modulos.component';
 import { ProgresoListComponent } from './progreso-list/progreso-list.component';
 import { TemaComponent } from './tema/tema.component';
+import { RankingGeneralComponent } from './ranking-general/ranking-general.component';
+import { RankingModularComponent } from './ranking-modular/ranking-modular.component';
+import { PlatillaMenuComponent } from './platilla-menu/platilla-menu.component';
+import { TemasModuloComponent } from './temas-modulo/temas-modulo.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +59,10 @@ import { TemaComponent } from './tema/tema.component';
     AlternativaComponent,
     CrudModulosComponent,
     ProgresoListComponent,
+    RankingGeneralComponent,
+    RankingModularComponent,
+    PlatillaMenuComponent,
+    TemasModuloComponent,
   ],
   imports: [
     BrowserModule,

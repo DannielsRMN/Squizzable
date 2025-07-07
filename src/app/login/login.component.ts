@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { MenuVisibilityService } from '../../services/visible.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +11,7 @@ import { MenuVisibilityService } from '../../services/visible.service';
 })
 export class LoginComponent {
 
-  constructor(private inicioSesion: AuthService, private menu: MenuVisibilityService) {}
+  constructor(private inicioSesion: AuthService) {}
 
   username: string = '';
   password: string = '';
@@ -22,15 +21,10 @@ export class LoginComponent {
 
   login() {
     this.inicioSesion.login(this.username, this.password);
-    this.inicioSesion.obtenerNombre(this.username, this.password);
-    this.inicioSesion.obtenerAdmin(this.username, this.password);
-    this.inicioSesion.obtenerCargo(this.username, this.password);
   }
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.menu.hideMenu();
-    }, 0);
+  ngOnInit(){
+
   }
 
 }

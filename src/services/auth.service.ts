@@ -14,6 +14,10 @@ import { BehaviorSubject, Observable } from "rxjs";
 export class AuthService {
   // El token será una cookie y puede ser un string o nulo.
   private token = new BehaviorSubject<string | null>(localStorage.getItem('token'));
+  private name = new BehaviorSubject<string | null>(localStorage.getItem('name'));
+  private isSuperuser = new BehaviorSubject<string | null>(localStorage.getItem('admin'));
+  private id = new BehaviorSubject<string | null>(localStorage.getItem('id'));
+
 
   // Creamos la URL de la API
   private apiUrl = 'http://127.0.0.1:8000/api';
@@ -24,9 +28,13 @@ export class AuthService {
   // Generamos el método login | Automatización
   login(username: string, password: string) {
     const headers = { 'x-api-key': 'jnxAAq7a65wzXyQ3qPPF' }
-    this.http.post<{ token: string }>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
+    this.http.post<{ token: string , user_id: string, username: string, is_superuser: string, especialidad: string}>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
       this.token.next(respuesta.token);
       localStorage.setItem('token', respuesta.token);
+      localStorage.setItem('user_id', respuesta.user_id)
+      localStorage.setItem('username', respuesta.username)
+      localStorage.setItem('is_superuser', respuesta.is_superuser)
+      localStorage.setItem('especialidad', respuesta.especialidad)
       // Saca todos los mapeados de la URL. Le saca una foto  (snapshot) y de esa foto va a sacar todos los parámetros
       const urlRetorno = this.route.snapshot.queryParamMap.get('returnUrl') || '/' // En caso no encuentre la ruta, lo deja como ruta vacía.
       this.router.navigateByUrl(urlRetorno);
@@ -34,66 +42,6 @@ export class AuthService {
       console.error('Error en el login', error)
     });
     // Se pone entre llaves para que se transforme en JSON
-  }
-
-  private name = new BehaviorSubject<string | null>(localStorage.getItem('name'));
-  public name$: Observable<string | null> = this.name.asObservable();
-
-  obtenerNombre(username: string, password: string) {
-    const headers = { 'x-api-key': 'jnxAAq7a65wzXyQ3qPPF' }
-    this.http.post<{ username: string }>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
-      this.name.next(respuesta.username);
-      localStorage.setItem('name', respuesta.username);
-    });
-  }
-
-  returnNombre(){
-    return localStorage.getItem('name');
-  }
-
-  private isSuperuser = new BehaviorSubject<string | null>(localStorage.getItem('admin'));
-  public isSuperuser$: Observable<string | null> = this.isSuperuser.asObservable();
-
-  obtenerAdmin(username: string, password: string) {
-    const headers = { 'x-api-key': 'jnxAAq7a65wzXyQ3qPPF' }
-    this.http.post<{ is_superuser: string }>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
-      this.isSuperuser.next(respuesta.is_superuser);
-      localStorage.setItem('admin', respuesta.is_superuser);
-    });
-  }
-
-  returnAdmin(){
-    return localStorage.getItem('admin');
-  }
-
-  private cargo = new BehaviorSubject<string | null>(localStorage.getItem('cargo'));
-  public cargo$: Observable<string | null> = this.cargo.asObservable();
-
-  obtenerCargo(username: string, password: string) {
-    const headers = { 'x-api-key': 'jnxAAq7a65wzXyQ3qPPF' }
-    this.http.post<{ cargo: string }>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
-      this.isSuperuser.next(respuesta.cargo);
-      localStorage.setItem('cargo', respuesta.cargo);
-    });
-  }
-
-  returnCargo(){
-    return localStorage.getItem('cargo');
-  }
-
-  private id = new BehaviorSubject<string | null>(localStorage.getItem('id'));
-  public id$: Observable<string | null> = this.id.asObservable();
-
-  obtenerId(username: string, password: string) {
-    const headers = { 'x-api-key': 'jnxAAq7a65wzXyQ3qPPF' }
-    this.http.post<{ user_id: number }>(this.apiUrl + '/token-auth/', { username, password }, { headers }).subscribe(respuesta => {
-      this.id.next(respuesta.user_id.toString());
-      localStorage.setItem('id', respuesta.user_id.toString());
-    });
-  }
-
-  returnId(){
-    return localStorage.getItem('id');
   }
 
   areYouLogged() {
@@ -104,9 +52,10 @@ export class AuthService {
   logOff() {
     this.token.next(null);
     localStorage.removeItem('token');
-    localStorage.removeItem('name');
-    localStorage.removeItem('admin');
-    localStorage.removeItem('cargo');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('username');
+    localStorage.removeItem('is_superuser');
+    localStorage.removeItem('especialidad');
     this.router.navigate(['/login']);
   }
 }

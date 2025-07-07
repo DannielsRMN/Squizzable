@@ -1,0 +1,66 @@
+.body{
+  max-height: 100vh;
+  height: 100%;
+
+  max-width: 100vw;
+  width: 100%;
+
+  padding: 5px;
+}
+
+.contenido{
+  width: 100%;
+}
+
+.menu-left{
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.menu-left span{
+  padding-left: 20px;
+}
+
+.proyect{
+  font-family: "Jersey 25", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.main-content{
+  display: flex;
+}
+
+.barra-vertical{
+  width: 15%;
+  margin-top: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+}
+
+.contenido-router{
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 5px;
+  border-radius: 10px;
+}
+
+.botones{
+  display: flex;
+  gap: 15px;
+  padding-right: 15px;
+}
+
+.proyect{
+  text-decoration: none;
+}
+
+.title{
+  text-decoration: none;
+  font-family: "Jersey 25", sans-serif;
+  font-size: 35px;
+  margin-left: 10px;
+}

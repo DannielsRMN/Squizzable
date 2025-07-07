@@ -15,7 +15,7 @@
             <h4>Especialidad del Módulo: {{ modulo.nombreEspecialidad }}</h4>
           </div>
           <div class="go">
-            <p-button icon="pi pi-home" aria-label="Save"/>
+            <p-button icon="pi pi-arrow-right" rounded="true" aria-label="Save" (click)="redirigirTemas(modulo.idModulo)"/>
           </div>
         </div>
       </p-card>

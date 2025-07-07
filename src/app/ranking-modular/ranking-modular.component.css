@@ -1,0 +1,32 @@
+.container {
+  width: 84vw;
+}
+
+.bta {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bt {
+  display: flex;
+  justify-content: center;
+}
+
+.gray-background {
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+}
+
+.select{
+  width: 25%;
+}
+
+.intro{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
