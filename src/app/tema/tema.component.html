@@ -13,7 +13,7 @@
       <th style="width:11%"></th>
     </tr>
   </ng-template>
-  <ng-template #body let-tema let-ri="rowIndex">
+  <ng-template #body let-tema let-ri="rowwIndex">
     <tr>
       <td>{{ tema.idTema }}</td>
       <td>{{ tema.nombreTema }}</td>
@@ -30,39 +30,63 @@
   </ng-template>
 </p-table>
 
-<!-- Diálogo para crear/editar tema -->
-<p-dialog header="Creación/Edición de Tema" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }">
-  <div class="flex flex-column gap-3">
-    <div class="field">
-      <label for="nombreTema" class="font-semibold">Nombre del Tema</label>
-      <input pInputText id="nombreTema" [(ngModel)]="temaDialogo.nombreTema" class="w-full" />
-    </div>
 
-    <div class="field">
-      <label for="contenido" class="font-semibold">Contenido</label>
-      <textarea pInputTextarea id="contenido" [(ngModel)]="temaDialogo.contenido" rows="3" class="w-full"></textarea>
-    </div>
-
-    <div class="field">
-      <label for="puntos" class="font-semibold">Puntos Totales</label>
-      <input type="number" pInputText id="puntos" [(ngModel)]="temaDialogo.puntosTotal" class="w-full" />
-    </div>
-
-    <div class="field">
-      <label for="modulo" class="font-semibold">Módulo</label>
-      <p-dropdown
-        id="modulo"
-        [options]="modulos"
-        [(ngModel)]="modu_select"
-        optionLabel="nombreModulo"
-        placeholder="Seleccione un módulo"
-        class="w-full"
-      ></p-dropdown>
-    </div>
+<!-- Diálogo para crear/editar tema (VERSION CON PLACEHOLDERS) -->
+<p-dialog header="Creación/Edición de un nuevo Tema" [modal]="true" [(visible)]="visible" [style]="{ width: '32rem' }">
+  
+  <div class="grid form-grid">
+    
+  <!-- Fila para el Nombre del Tema -->
+  <div class="field col-12">
+  <label for="nombreTema" class="font-semibold">
+  Nombre del Tema
+  <i class="pi pi-info-circle ml-2" pTooltip="El nombre del tema a ingresar"></i>
+  </label>
+  <input pInputText id="nombreTema" [(ngModel)]="temaDialogo.nombreTema" class="w-full" placeholder="Ej: Introducción a PrimeNG" />
   </div>
 
-  <div class="flex justify-end gap-2 mt-4">
-    <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
-    <p-button label="Guardar" (click)="guardarTema()" />
+  <!-- Fila para el Contenido -->
+  <div class="field col-12">
+  <label for="contenido" class="font-semibold">
+  Contenido
+  <i class="pi pi-info-circle ml-2" pTooltip="Añada una descripción para que el tema se entienda"></i>
+  </label>
+  <textarea pInputTextarea id="contenido" [(ngModel)]="temaDialogo.contenido" rows="4" class="w-full" placeholder="  Ej: En este tema aprenderemos los conceptos básicos..."></textarea>
   </div>
+
+    <!-- Fila para Puntos Totales -->
+  <div class="field col-12 md:col-4">
+  <label for="puntos" class="font-semibold">
+  Puntos Totales
+  <i class="pi pi-info-circle ml-2" pTooltip="¿Cuantos puntos vale el tema?"></i>
+  </label>
+  <input type="number" pInputText id="puntos" [(ngModel)]="temaDialogo.puntosTotal" class="w-full" placeholder="Ej: 20" />
+  </div>
+
+  <!-- Fila para Módulo -->
+  <div class="field col-12 md:col-8">
+  <label for="modulo" class="font-semibold">
+  Módulo
+  <i class="pi pi-info-circle ml-2" pTooltip="IMPORTANTE: Asigne correctamente al módulo que pertenece"></i>
+  </label>
+  <p-dropdown
+  id="modulo"
+  [options]="modulos"
+  [(ngModel)]="modu_select"
+  optionLabel="nombreModulo"
+  placeholder="Seleccione un módulo disponible, por favor"
+  [appendTo]="'body'"
+  styleClass="w-full"
+  ></p-dropdown>
+  </div>
+  </div>
+
+  <!-- Pie de página del diálogo -->
+  <ng-template pTemplate="footer">
+  <div class="flex justify-content-end gap-2">
+  <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+  <p-button label="Guardar" (click)="guardarTema()" />
+  </div>
+  </ng-template>
+
 </p-dialog>
