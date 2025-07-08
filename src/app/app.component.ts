@@ -13,6 +13,9 @@ import { Observable, Subscription } from 'rxjs';
   providers: [AuthService]
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private login: AuthService, private router: Router, private conf: AuthService) {
   }

@@ -55,36 +55,62 @@
 </p-table>
 
 <!-- CREATE y UPDATE -> Formulario -->
-<p-dialog header="Alternativa" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
-    <div class="flex items-center gap-4 mb-4">
-        <label for="alternativa" class="font-semibold w-24">Alternativa</label>
-        <input pInputText id="alternativa" class="flex-auto" autocomplete="off" [(ngModel)]="alternativaDialogo.alternativa"/>
+<!-- CREATE y UPDATE -> Formulario (VERSIÓN MEJORADA) -->
+
+<!-- easteregg: Danniels prestame 1.50 te pago el martes we -->
+<p-dialog header="Creación/Edición de Alternativa" [modal]="true" [(visible)]="visible" [style]="{ width: '32rem' }">
+  
+  <div class="grid form-grid">
+    
+    <!-- Fila para el texto de la Alternativa -->
+    <div class="field col-12">
+    <label for="alternativa" class="font-semibold">
+    Texto de la Alternativa
+    <i class="pi pi-info-circle ml-2" pTooltip="Escribe el texto de la respuesta. Puede ser la opción correcta o una de las incorrectas."></i>
+    </label>
+    <textarea pInputTextarea id="alternativa" class="w-full" autocomplete="off" [(ngModel)]="alternativaDialogo.alternativa" placeholder="Ej: Es un framework para construir interfaces de usuario." rows="3"></textarea>
     </div>
 
-    <div class="flex items-center gap-4 mb-4">
-        <label for="esCorrecta" class="font-semibold w-24">esCorrecta</label>
+    <!-- Fila para 'Es Correcta' y 'Pregunta' -->
+    <div class="field col-12 md:col-6">
+    <label for="esCorrecta" class="font-semibold">
+    ¿Es correcta? (esCorrecta)
+    <i class="pi pi-info-circle ml-2" pTooltip="Indica si esta alternativa es la respuesta correcta a la pregunta."></i>
+    </label>
     <p-dropdown
     id="esCorrecta"
     [options]="[{label:'Sí', value:true}, {label:'No', value:false}]"
     [(ngModel)]="alternativaDialogo.esCorrecta"
     placeholder="Seleccione"
-    class="flex-auto w-full md:w-56">
-</p-dropdown>
-
-
-
+    styleClass="w-full"
+    [appendTo]="'body'"
+    ></p-dropdown>
     </div>
 
-
-    <div class="flex items-center gap-4 mb-4">
-        <label for="pregunta" class="font-semibold w-24">Pregunta</label>
-        <p-select id="pregunta" [options]="preguntas" [(ngModel)]="pregun_select" optionLabel="pregunta" placeholder="Seleccione una Pregunta" class="w-full md:w-56" />
+    <div class="field col-12 md:col-6">
+    <label for="pregunta" class="font-semibold">
+    Pregunta
+        <i class="pi pi-info-circle ml-2" pTooltip="Asocia esta alternativa a una pregunta existente."></i>
+    </label>
+    <!-- NOTADEEDSONDOESSSSS: Se ha cambiado p-select por p-dropdown para consistencia -->
+    <p-dropdown
+    id="pregunta"
+    [options]="preguntas"
+    [(ngModel)]="pregun_select"
+    optionLabel="pregunta"
+    placeholder="Seleccione una pregunta"
+    styleClass="w-full"
+    [appendTo]="'body'"
+    ></p-dropdown>
+    </div>
     </div>
 
-
-    <div class="flex justify-end gap-2">
-        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
-        <p-button label="Guardar" (click)="guardarAlternativa()" />
+    <!-- Pie de página del diálogo -->
+    <ng-template pTemplate="footer">
+    <div class="flex justify-content-end gap-2">
+    <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+    <p-button label="Guardar" (click)="guardarAlternativa()" />
     </div>
-</p-dialog>
+    </ng-template>
+    </p-dialog>
 

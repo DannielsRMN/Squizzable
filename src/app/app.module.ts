@@ -24,6 +24,7 @@ import { ToastModule } from 'primeng/toast';
 
 // Componente
 import { IMAGE_CONFIG } from '@angular/common';
+import { TooltipModule } from 'primeng/tooltip'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
@@ -69,6 +70,7 @@ import { TemasModuloComponent } from './temas-modulo/temas-modulo.component';
     AppRoutingModule,
     MenubarModule,
     CardModule,
+    TooltipModule,
     TableModule,
     SliderModule,
     FormsModule,
@@ -84,11 +86,12 @@ import { TemasModuloComponent } from './temas-modulo/temas-modulo.component';
     InputTextModule,
     DialogModule,
     ButtonModule,
-    DropdownModule,
+    DropdownModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: IMAGE_CONFIG,
+    {
+      provide: IMAGE_CONFIG,
       useValue: {
         disableImageSizeWarning: true,
         disableImageLazyLoadWarning: true
@@ -100,7 +103,8 @@ import { TemasModuloComponent } from './temas-modulo/temas-modulo.component';
         preset: Material,
         options: {
           darkModeSelector: '.dk'
-        }      }
+        }
+      }
     })
   ],
   bootstrap: [AppComponent]

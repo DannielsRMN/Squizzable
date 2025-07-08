@@ -2,9 +2,11 @@
 
   <div class="intro">
     <h2>Listado de Módulos</h2>
-    <p-button label="Nuevo Módulo" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
   </div>
 
+  
+  <p-button label="Nuevo Módulo" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+  
   <p-table [value]="modulos" [tableStyle]="{'min-width': '75rem'}">
     <ng-template #header>
       <tr>
@@ -42,27 +44,68 @@
     </ng-template>
   </p-table>
 
-  <!-- CREATE y UPDATE -> Formulario -->
-  <p-dialog header="Creación/Edición de Modulo" [modal]="true" [(visible)]="visible"
-    [style]="{ width: '25rem', 'height' : '125vh'}">
-    <div class="flex items-center gap-4 mb-4">
-      <label for="modulo" class="font-semibold w-24">Modulo</label>
-      <input pInputText id="modulo" class="flex-auto" autocomplete="off" [(ngModel)]="moduloDialogo.nombreModulo" />
+
+<!-- CREATE y UPDATE -> Formulario (VERSIÓN MEJORADA - version 3d.50.n) -->
+
+<!-- 
+  NOTADEEDSONDOEEEEESSSSS: Se ha eliminado la altura fija height para que el diálogo se adapte a los contenido.
+  El ancho se ha ajustado a 32rem para mantener la consistencia con otros formularios. Gritenme si hay problemas con el diseño. 
+-->
+<p-dialog header="Creación/Edición de Módulo" [modal]="true" [(visible)]="visible" [style]="{ width: '32rem' }">
+  <!-- easteregg: Balatro debió haber ganao el goty-->
+  <div class="grid form-grid">
+    
+    <!-- Fila para el Nombre del Módulo -->
+    <div class="field col-12">
+    <label for="modulo" class="font-semibold">
+    Nombre del Módulo
+    <i class="pi pi-info-circle ml-2" pTooltip="El nombre que identificará al módulo de aprendizaje."></i>
+    </label>
+    <input pInputText id="modulo" class="w-full" autocomplete="off" [(ngModel)]="moduloDialogo.nombreModulo" placeholder="Ej: Fundamentos de Django REST" />
     </div>
-    <div class="flex items-center gap-4 mb-4">
-      <label for="tipo" class="font-semibold w-24">Dificultad</label>
-      <p-select id="tipo" [options]="dificultades" [(ngModel)]="dif_select" placeholder="Seleccione una Dificultad"
-        class="w-full md:w-56" />
+
+    <!-- Fila para Dificultad y Especialidad -->
+    <div class="field col-12 md:col-6">
+    <label for="dificultad" class="font-semibold">
+    Dificultad
+    <i class="pi pi-info-circle ml-2" pTooltip="Define el nivel de complejidad del módulo."></i>
+    </label>
+    <!-- NOTADEEDSONDOESSSSSSSSS: Se ha cambiado p-select por p-dropdown para consistencia y mejor funcionalidad.-->
+    <p-dropdown
+    id="dificultad"
+    [options]="dificultades"
+    [(ngModel)]="dif_select"
+    placeholder="Seleccione una dificultad"
+    styleClass="w-full"
+    [appendTo]="'body'"
+    ></p-dropdown>
     </div>
-    <div class="flex items-center gap-4 mb-4">
-      <label for="especialidad" class="font-semibold w-24">Especialidad</label>
-      <p-select id="especialidad" [options]="especialidades" [(ngModel)]="espe_select" optionLabel="nombreEspecialidad"
-        placeholder="Seleccione una Especialidad" class="w-full md:w-56" />
+
+    <div class="field col-12 md:col-6">
+    <label for="especialidad" class="font-semibold">
+    Especialidad
+    <i class="pi pi-info-circle ml-2" pTooltip="Asigne el módulo a una ruta de aprendizaje o especialidad."></i>
+    </label>
+    <p-dropdown
+    id="especialidad"
+    [options]="especialidades"
+    [(ngModel)]="espe_select"
+    optionLabel="nombreEspecialidad"
+    placeholder="Seleccione una especialidad"
+    styleClass="w-full"
+    [appendTo]="'body'"
+    ></p-dropdown>
     </div>
-    <div class="flex justify-end gap-2">
-      <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
-      <p-button label="Guardar" (click)="guardarModulo()" />
     </div>
+
+  <!-- Pie de página del diálogo -->
+  <ng-template pTemplate="footer">
+  <div class="flex justify-content-end gap-2">
+  <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+  <p-button label="Guardar" (click)="guardarModulo()" />
+  </div>
+  </ng-template>
   </p-dialog>
+
 
 </div>
