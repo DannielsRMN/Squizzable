@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-temas-modulo',
@@ -7,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrl: './temas-modulo.component.css'
 })
 export class TemasModuloComponent {
+
+  constructor(private route: ActivatedRoute) { }
+
+  modulo: string = '';
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+    this.modulo = params['modulo'] || '';
+    console.log(params);
+  });
+  }
 
 }

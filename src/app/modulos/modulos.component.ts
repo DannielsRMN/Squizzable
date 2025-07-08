@@ -33,7 +33,6 @@ export class ModulosComponent {
 
   obtenerModulos() {
     if (this.admin == 'false') {
-      this.espeID = '1';
       this.api.getModuloPersonales(this.espeID).subscribe(res => {
         this.modulos = res;
       });
@@ -45,8 +44,7 @@ export class ModulosComponent {
   }
 
   redirigirTemas(id: number) {
-    let moduloSeleccionado = id;
-    this.router.navigate(['/TemasModulo', moduloSeleccionado,'/']);
+    this.router.navigate(['/TemasModulo'], { queryParams: { modulo: id } });
   }
 }
 
