@@ -15,6 +15,11 @@ import { RankingModularComponent } from './ranking-modular/ranking-modular.compo
 import { PlatillaMenuComponent } from './platilla-menu/platilla-menu.component';
 import { TemasModuloComponent } from './temas-modulo/temas-modulo.component';
 
+// --- IMPORTA TUS DOS NUEVOS COMPONENTES ---
+import { SeleccionComponent } from './seleccion/seleccion.component';
+import { QuizzRespComponent } from './quizz-resp/quizz-resp.component';
+
+
 const routes: Routes = [
   { path: "login", component: LoginComponent },
 
@@ -24,16 +29,14 @@ const routes: Routes = [
     { path: "Progreso", component: ProgresoListComponent},
     { path: "RankingGeneral", component: RankingGeneralComponent},
     { path: "RankingModular", component: RankingModularComponent},
-
-
     { path: "TemasModulo", component: TemasModuloComponent},
-
-
     { path: "Especialidades", component: CRUDEspecializacionesComponent},
     { path: "Modulos", component: CrudModulosComponent},
     { path: "Preguntas", component: PreguntaComponent},
     { path: "Alternativas", component: AlternativaComponent},
     { path: "Temas", component: TemaComponent},
+    { path: "seleccion/:id", component: SeleccionComponent },
+    { path: "quizz-resp/:id", component: QuizzRespComponent },
 
     { path: '', redirectTo: 'Inicio', pathMatch: 'full' },
   ]},

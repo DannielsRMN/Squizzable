@@ -1,0 +1,45 @@
+.selection-container {
+  background-color: #ffffff;
+  border: 2px solid #000000; /* Borde negro */
+  border-radius: 15px; /* Bordes curvilíneos */
+  padding: 2rem;
+  margin: 1rem;
+}
+
+.theme-list {
+  margin-top: 2rem;
+}
+
+.theme-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.theme-item:last-child {
+  border-bottom: none;
+}
+
+.theme-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.no-questions-message {
+  display: flex;
+  align-items: center;
+  color: #888;
+  font-style: italic;
+}
+
+.no-questions-message .pi {
+  margin-right: 0.5rem;
+  color: #ffc107; /* Amarillo de advertencia */
+}
+
+.footer-actions {
+  margin-top: 2rem;
+  text-align: center;
+}

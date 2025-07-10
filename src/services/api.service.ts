@@ -146,4 +146,6 @@ export class ApiService {
     return this.http.get<progreso[]>(this.ApiUrl + 'Progresos/' + id + '/');
   }
 
+
+
 }

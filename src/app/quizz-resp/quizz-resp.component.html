@@ -1,0 +1,57 @@
+<!-- Contenedor principal del quizz -->
+<div class="quizz-player-container">
+
+  <!-- Pantalla de Bienvenida -->
+  <div *ngIf="estado === 'bienvenida'" class="welcome-screen">
+    <h2>Bienvenido a tu "QuiZZ"</h2>
+    <p>Estás a punto de dar un examen del tema "<strong>{{ temaActual?.nombreTema }}</strong>"</p>
+    <p class="details">El examen será rápido, dispones de 30 segundos para responder cada pregunta.</p>
+    <p class="details">Los resultados de tu examen estarán al final del Quizz. Responde con!</p>
+    <p-button label="Empezar con el Quizz" icon="pi pi-play" (click)="empezarQuizz()"></p-button>
+  </div>
+
+  <!-- Pantalla Principal del Quizz (Preguntas y Alternativas) -->
+  <div *ngIf="estado === 'enProgreso' || estado === 'preguntaRespondida'">
+    <div class="pregunta-container">
+      <div class="quizz-header">
+        <div class="pregunta-contador">
+          Pregunta {{ preguntaActualIndex + 1 }} de {{ preguntasDelTema.length }}
+        </div>
+        <div class="temporizador">
+          Tiempo: {{ tiempoRestante }}s
+        </div>
+      </div>
+      <div class="pregunta-texto">
+        <h2>{{ preguntasDelTema[preguntaActualIndex].pregunta }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de Alternativas (se muestra en bienvenida y en progreso) -->
+  <div class="alternativas-container" *ngIf="estado === 'bienvenida' || estado === 'enProgreso' || estado === 'preguntaRespondida'">
+    <div class="alternativas-grid">
+      <!-- Iteramos sobre las 4 alternativas de la pregunta actual -->
+      <div *ngFor="let alternativa of preguntasDelTema[preguntaActualIndex]?.alternativas" class="alternativa-item">
+        <button 
+          (click)="seleccionarRespuesta(alternativa)"
+          [disabled]="estado !== 'enProgreso'"
+          [ngClass]="{
+            'correcta': estado === 'preguntaRespondida' && alternativa.esCorrecta,
+            'incorrecta': estado === 'preguntaRespondida' && !alternativa.esCorrecta,
+            'seleccionada': alternativa.idAlternativa === alternativaSeleccionadaId
+          }">
+          {{ alternativa.alternativa }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pantalla de Finalización -->
+  <div *ngIf="estado === 'finalizado'" class="final-screen">
+    <h2>¡Quizz Completado!</h2>
+    <p>Has finalizado el tema "<strong>{{ temaActual?.nombreTema }}</strong>".</p>
+    <h3>Tu Puntuación Final: {{ puntajeTotal | number:'1.0-0' }} / {{ temaActual?.puntosTotal }}</h3>
+    <!-- TODO: Añadir botón para volver a la selección de temas -->
+  </div>
+
+</div>

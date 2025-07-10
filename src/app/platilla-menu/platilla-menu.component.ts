@@ -14,7 +14,6 @@ import { MenuItem } from 'primeng/api';
 })
 export class PlatillaMenuComponent implements OnInit {
 
-  // Constructor adaptado con todas las inyecciones necesarias
   constructor(
     private login: AuthService,
     private router: Router,
@@ -42,37 +41,27 @@ export class PlatillaMenuComponent implements OnInit {
     console.log("D/Tema cambiado")
   }
 
-  // --- FUNCIÓN ADAPTADA Y COMPLETADA PARA APLICAR EL TEMA A TODO ---
+
   private applyTheme() {
     const themeClass = 'dk';
     const routerContainer = this.document.querySelector('.contenido-router') as HTMLElement;
-
-    // Colores para el body
     const lightModeBodyBg = '#f8f9fa';
     const darkModeBodyBg = '#212529';
-
-    // Colores para el contenedor del router
     const lightModeContainerBg = '#ffffff';
     const darkModeContainerBg = '#343a40';
     const lightModeContainerBorder = '#dee2e6';
     const darkModeContainerBorder = '#495057';
 
     if (this.isDarkMode) {
-      // 1. Aplica la clase a <html> para los componentes de PrimeNG.
       this.renderer.addClass(this.document.documentElement, themeClass);
-      // 2. Cambia el fondo del <body> directamente.
       this.renderer.setStyle(this.document.body, 'background-color', darkModeBodyBg);
-      // 3. Cambia el fondo y borde del contenedor del router directamente.
       if (routerContainer) {
         this.renderer.setStyle(routerContainer, 'background-color', darkModeContainerBg);
         this.renderer.setStyle(routerContainer, 'border-color', darkModeContainerBorder);
       }
     } else {
-      // 1. Quita la clase de <html>.
       this.renderer.removeClass(this.document.documentElement, themeClass);
-      // 2. Restaura el fondo del <body>.
       this.renderer.setStyle(this.document.body, 'background-color', lightModeBodyBg);
-      // 3. Restaura el fondo y borde del contenedor del router.
       if (routerContainer) {
         this.renderer.setStyle(routerContainer, 'background-color', lightModeContainerBg);
         this.renderer.setStyle(routerContainer, 'border-color', lightModeContainerBorder);
@@ -85,9 +74,8 @@ export class PlatillaMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Modo Oscuro - Aplicamos el tema guardado al iniciar
     this.isDarkMode = localStorage.getItem('darkMode') === 'true';
-    this.applyTheme(); // Llama a nuestra nueva función para aplicar el tema al cargar
+    this.applyTheme(); 
 
     this.admin = localStorage.getItem('is_superuser');
     console.log("Admin: " + this.admin);

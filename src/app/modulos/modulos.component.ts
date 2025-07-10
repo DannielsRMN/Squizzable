@@ -43,9 +43,9 @@ export class ModulosComponent {
     }
   }
 
+  // --- FUNCIÓN CORREGIDA ---
+  // Ahora navega a la nueva ruta '/seleccion' pasando el ID del módulo.
   redirigirTemas(id: number) {
-    this.router.navigate(['/TemasModulo'], { queryParams: { modulo: id } });
+    this.router.navigate(['/seleccion', id]);
   }
 }
-
-

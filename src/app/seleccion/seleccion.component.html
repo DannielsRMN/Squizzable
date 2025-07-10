@@ -1,0 +1,49 @@
+<div class="selection-container">
+  
+  <!-- Estado de Carga -->
+  <div *ngIf="estado === 'cargando'">
+    <h2>Cargando temas...</h2>
+  </div>
+
+  <!-- Estado Listo: Muestra la lista de temas -->
+  <div *ngIf="estado === 'listo'">
+    <h1>Selecciona un Tema del Módulo: <strong>{{ nombreModulo }}</strong></h1>
+    <div class="theme-list">
+      <!-- Iteramos sobre cada tema del módulo -->
+      <div *ngFor="let tema of temasDelModulo" class="theme-item">
+        <span class="theme-name">{{ tema.nombreTema }}</span>
+        <div class="theme-actions">
+          <!-- Si el tema tiene preguntas, muestra el botón para jugar -->
+          <p-button 
+            *ngIf="tema.tienePreguntas"
+            label="Iniciar Quizz" 
+            icon="pi pi-play" 
+            (click)="iniciarQuizz(tema.idTema)">
+          </p-button>
+          <!-- Si no, muestra el mensaje de advertencia -->
+          <div *ngIf="!tema.tienePreguntas" class="no-questions-message">
+            <i class="pi pi-exclamation-triangle"></i>
+            <span>Lo sentimos, este tema no tiene preguntas.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estado Sin Temas: Muestra un mensaje si el módulo está vacío -->
+  <div *ngIf="estado === 'sinTemas'">
+    <h2>Módulo sin Contenido</h2>
+    <p>Este módulo aún no tiene temas asignados.</p>
+  </div>
+
+  <!-- Botón para volver, siempre visible después de cargar -->
+  <div class="footer-actions" *ngIf="estado !== 'cargando'">
+    <p-button 
+      label="Volver a la Selección de Módulos" 
+      icon="pi pi-arrow-left" 
+      (click)="volverAModulos()"
+      severity="secondary">
+    </p-button>
+  </div>
+
+</div>
