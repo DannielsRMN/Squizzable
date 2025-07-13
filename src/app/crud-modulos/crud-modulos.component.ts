@@ -37,6 +37,7 @@ export class CrudModulosComponent {
 
     abrirDialogo() {
       this.visible = true;
+      this.moduloDialogo = new modulo();
     }
 
     obtenerModulos() {

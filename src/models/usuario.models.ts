@@ -6,4 +6,5 @@ export class usuario{
   puntos?: number
   date_joined?: Date
   encargado?: string
+  static puntos: number
 }

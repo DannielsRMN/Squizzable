@@ -79,6 +79,15 @@ export class ApiService {
     return this.http.get<usuario[]>(this.ApiUrl + 'clasificacion/' + id + "/");
   }
 
+  public patchPuntosUsuario(id: string, puntos: number): Observable<usuario> {
+    let body = JSON.stringify({ puntos: puntos });
+    return this.http.patch<usuario>(this.ApiUrl + 'Usuario/' + id + "/", body, this.httpOptions);
+  }
+
+  public getUsuario(id: string): Observable<usuario> {
+    return this.http.get<usuario>(this.ApiUrl + 'Usuario/' + id + '/');
+  }
+
     //CRUG PREGUNTA
 
   public getPregunta(): Observable<pregunta[]> {

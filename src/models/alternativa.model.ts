@@ -4,5 +4,5 @@ export class alternativa {
   esCorrecta: boolean;
 
   pregunta: number;
-  pregunta_ref: number;
+  pregunta_ref: string;
 }

@@ -52,6 +52,7 @@ export class PreguntaComponent {
 
   abrirPegunta() {
     this.visible = true;
+    this.preguntaDialogo = new pregunta();
   }
 
   guardarPregunta() {

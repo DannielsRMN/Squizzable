@@ -85,10 +85,9 @@ export class PlatillaMenuComponent implements OnInit {
         {
             label: 'Opciones',
             items: [
-                { label: 'Módulos', icon: 'pi pi-plus', command: () => { this.router.navigate(['/Modulo']) } },
-                { label: 'Progreso', icon: 'pi pi-search', command: () => { this.router.navigate(['/Progreso']) } },
-                { label: 'Ranking General', icon: 'pi pi-cog', command: () => { this.router.navigate(['/RankingGeneral']) } },
-                { label: 'Ranking Modular', icon: 'pi pi-cog', command: () => { this.router.navigate(['/RankingModular']) } },
+                { label: 'Módulos', icon: 'pi pi-question', command: () => { this.router.navigate(['/Modulo']) } },
+                { label: 'Ranking General', icon: 'pi pi-star', command: () => { this.router.navigate(['/RankingGeneral']) } },
+                { label: 'Ranking Modular', icon: 'pi pi-star-fill', command: () => { this.router.navigate(['/RankingModular']) } },
             ]
         },
         {
@@ -96,15 +95,14 @@ export class PlatillaMenuComponent implements OnInit {
             items: [
                 { label: 'Modulo', icon: 'pi pi-cog', routerLink: '/Modulos' },
                 { label: 'Temas', icon: 'pi pi-cog', routerLink: '/Temas' },
-                { label: 'Especialidad', icon: 'pi pi-sign-out', routerLink: '/Especialidades' },
-                { label: 'Preguntas', icon: 'pi pi-sign-out', routerLink: '/Preguntas' },
-                { label: 'Alternativas', icon: 'pi pi-sign-out', routerLink: '/Alternativas' },
+                { label: 'Especialidad', icon: 'pi pi-cog', routerLink: '/Especialidades' },
+                { label: 'Preguntas', icon: 'pi pi-cog', routerLink: '/Preguntas' },
+                { label: 'Alternativas', icon: 'pi pi-cog', routerLink: '/Alternativas' },
             ]
         },
         {
             label: 'Sesion',
             items: [
-                { label: 'Cuenta', icon: 'pi pi-cog' },
                 { label: 'Cerrar Sesión', icon: 'pi pi-sign-out', command: () => { this.logOut() } }
             ]
         }
@@ -113,16 +111,14 @@ export class PlatillaMenuComponent implements OnInit {
         {
             label: 'Opciones',
             items: [
-                { label: 'Módulos', icon: 'pi pi-plus', command: () => { this.router.navigate(['/Modulo']) } },
-                { label: 'Progreso', icon: 'pi pi-search', command: () => { this.router.navigate(['/Progreso']) } },
-                { label: 'Ranking General', icon: 'pi pi-cog', command: () => { this.router.navigate(['/RankingGeneral']) } },
-                { label: 'Ranking Modular', icon: 'pi pi-cog', command: () => { this.router.navigate(['/RankingModular']) } },
+                { label: 'Módulos', icon: 'pi pi-question', command: () => { this.router.navigate(['/Modulo']) } },
+                { label: 'Ranking General', icon: 'pi pi-star', command: () => { this.router.navigate(['/RankingGeneral']) } },
+                { label: 'Ranking Modular', icon: 'pi pi-star-fill', command: () => { this.router.navigate(['/RankingModular']) } },
             ]
         },
         {
             label: 'Sesion',
             items: [
-                { label: 'Cuenta', icon: 'pi pi-cog' },
                 { label: 'Cerrar Sesión', icon: 'pi pi-sign-out', command: () => { this.logOut() } }
             ]
         }

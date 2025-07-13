@@ -1,15 +1,14 @@
 <div class="container">
 
-  <h1>Listado de Preguntas</h1>
-  <hr>
+  <h2>Listado de Preguntas</h2>
   <p-button label="Nueva Pregunta" icon="pi pi-plus" class="mr-2" (onClick)="abrirPegunta()" />
   <p-table [value]="preguntas" [tableStyle]="{'min-width': '50rem'}">
     <ng-template #header>
       <tr>
         <th style="width:1%">ID</th>
-        <th style="width:auto">PREGUNTA</th>
-        <th style="width:10%">TEMA</th>
-        <th style="width:15%">ACCIONES</th>
+        <th style="width:auto">Pregunta</th>
+        <th style="width:10%">Tema</th>
+        <th style="width:15%">Acciones</th>
 
       </tr>
     </ng-template>

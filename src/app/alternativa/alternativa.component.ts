@@ -26,6 +26,7 @@ export class AlternativaComponent {
 
   abrirDialogo(){
     this.visible = true;
+    this.alternativaDialogo = new alternativa();
   }
 
   obtenerAlternativa(){

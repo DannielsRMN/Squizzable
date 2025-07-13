@@ -7,6 +7,7 @@ import { forkJoin } from 'rxjs';
 import { tema } from '../../models/tema.model';
 import { pregunta } from '../../models/pregunta.model';
 import { alternativa } from '../../models/alternativa.model';
+import { usuario } from '../../models/usuario.models';
 
 // Interfaz local para manejar la estructura de datos
 export interface PreguntaConAlternativas extends pregunta {
@@ -14,7 +15,7 @@ export interface PreguntaConAlternativas extends pregunta {
 }
 
 @Component({
-  standalone: false, 
+  standalone: false,
   selector: 'app-quizz-resp',
   templateUrl: './quizz-resp.component.html',
   styleUrls: ['./quizz-resp.component.css']
@@ -23,12 +24,12 @@ export class QuizzRespComponent implements OnInit, OnDestroy {
 
   // --- Estados del Componente ---
   public estado: 'cargando' | 'bienvenida' | 'enProgreso' | 'preguntaRespondida' | 'finalizado' = 'cargando';
-  
+
   // --- Datos del Quizz ---
   public temaActual: tema | undefined; // <-- CORRECCIÓN 1: Acepta que el tema pueda ser undefined
   public preguntasDelTema: PreguntaConAlternativas[] = [];
   public preguntaActualIndex = 0;
-  
+
   // --- Puntuación ---
   public puntajeTotal = 0;
   private puntosPorPregunta = 0;
@@ -45,7 +46,7 @@ export class QuizzRespComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private api: ApiService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const idTema = Number(this.route.snapshot.paramMap.get('id'));
@@ -56,7 +57,7 @@ export class QuizzRespComponent implements OnInit, OnDestroy {
         preguntas: this.api.getPregunta(),
         alternativas: this.api.getAlternativa()
       }).subscribe(({ temas, preguntas, alternativas }) => {
-        
+
         // 1. Encontrar el tema actual
         this.temaActual = temas.find(t => t.idTema === idTema);
 
@@ -141,11 +142,45 @@ export class QuizzRespComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
+  usuario_id: string | null = localStorage.getItem('user_id');
+  nuevosPuntos: number = 0;
+
+actualizarPuntosUsuario() {
+  if (!this.usuario_id) {
+    console.error('No se encontró el ID de usuario en localStorage.');
+    return;
+  }
+
+  this.api.getUsuario(this.usuario_id).subscribe(
+    resp => {
+
+      if (this.usuario_id == null) {
+        console.error('El ID de usuario es nulo.');
+      } else {
+        const puntosActuales = resp.puntos || 0;
+        this.nuevosPuntos = puntosActuales + this.puntajeTotal;
+        this.api.patchPuntosUsuario(this.usuario_id, this.nuevosPuntos).subscribe(
+        () => {
+          console.log('Puntos actualizados correctamente:', this.nuevosPuntos);
+        },
+        error => {
+          console.error('Error al actualizar los puntos del usuario:', error);
+        }
+      );
+      }
+    },
+    error => {
+      console.error('Error al obtener los puntos del usuario:', error);
+    }
+  );
+}
+
   finalizarQuizz(): void {
     this.estado = 'finalizado';
     console.log('Quizz finalizado! Puntuación final:', this.puntajeTotal);
+    this.actualizarPuntosUsuario();
   }
-  
+
   ngOnDestroy(): void {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);

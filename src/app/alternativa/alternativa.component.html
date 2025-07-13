@@ -1,116 +1,100 @@
-<h2>Listado de Alternativas</h2>
+<div class="body">
 
-<p-button label="Nuevo Alternativa" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
-<p-table [value]="alternativas" [tableStyle]="{'min-width': '75rem'}">
+  <h2>Listado de Alternativas</h2>
+
+  <p-button label="Nuevo Alternativa" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+  <p-table [value]="alternativas" [tableStyle]="{'min-width': '70rem'}">
     <ng-template #header>
-        <tr>
-            <th style="width:1%">ID</th>
-            <th style="width:auto">Alternativa</th>
-            <th style="width:1%">Estado</th>
-            <th style="width:30%">Pregunta</th>
-            <th style="width:11%">Acciones</th>
-        </tr>
+      <tr>
+        <th style="width:1%">ID</th>
+        <th style="width:auto">Alternativa</th>
+        <th style="width:1%">Estado</th>
+        <th style="width:auto">Pregunta</th>
+        <th style="width:10%">Acciones</th>
+      </tr>
     </ng-template>
     <ng-template #body let-alternativa let-ri="rowIndex">
-        <tr>
-            <td>
-                {{ alternativa.idAlternativa }}
-            </td>
-            <td>
-                {{ alternativa.alternativa }}
-            </td>
-            <td>
-                {{ alternativa.esCorrecta }}
-            </td>
-            <td>
-                {{ alternativa.pregunta }}
-            </td>
-            <td>
-                <div class="flex items-center justify-center gap-2">
-                    <button
-                        pButton
-                        pRipple
-                        type="button"
-                        icon="pi pi-pencil"
-                        (click)="editarAlternativa(alternativa)"
-                        text
-                        rounded
-                        severity="secondary"
-                    ></button>
-                    <!-- DELETE -> Boton -->
-                    <button
-                        pButton
-                        pRipple
-                        type="button"
-                        icon="pi pi-times"
-                        (click)="eliminarAlternativa(alternativa)"
-                        text
-                        rounded
-                        severity="secondary"
-                    ></button>
-                </div>
-            </td>
-        </tr>
+      <tr>
+        <td>
+          {{ alternativa.idAlternativa }}
+        </td>
+        <td>
+          {{ alternativa.alternativa }}
+        </td>
+        <td>
+          <div *ngIf="alternativa.esCorrecta === true">
+            <p-button icon="pi pi-check" [rounded]="true" severity="success"/>
+          </div>
+          <div *ngIf="alternativa.esCorrecta === false">
+            <p-button icon="pi pi-times" [rounded]="true" severity="danger" />
+          </div>
+        </td>
+        <td>
+          {{ alternativa.pregunta_ref }}
+        </td>
+        <td>
+          <div class="flex items-center justify-center gap-2">
+            <button pButton pRipple type="button" icon="pi pi-pencil" (click)="editarAlternativa(alternativa)" text
+              rounded severity="secondary"></button>
+            <!-- DELETE -> Boton -->
+            <button pButton pRipple type="button" icon="pi pi-times" (click)="eliminarAlternativa(alternativa)" text
+              rounded severity="secondary"></button>
+          </div>
+        </td>
+      </tr>
     </ng-template>
-</p-table>
+  </p-table>
+
+</div>
 
 <!-- CREATE y UPDATE -> Formulario -->
 <!-- CREATE y UPDATE -> Formulario (VERSIÓN MEJORADA) -->
 
 <!-- easteregg: Danniels prestame 1.50 te pago el martes we -->
-<p-dialog header="Creación/Edición de Alternativa" [modal]="true" [(visible)]="visible" [style]="{ width: '32rem' }">
-  
+<p-dialog header="Creación/Edición de Alternativa" [modal]="true" [(visible)]="visible" [style]="{ width: '62rem' }">
+
   <div class="grid form-grid">
-    
+
     <!-- Fila para el texto de la Alternativa -->
     <div class="field col-12">
-    <label for="alternativa" class="font-semibold">
-    Texto de la Alternativa
-    <i class="pi pi-info-circle ml-2" pTooltip="Escribe el texto de la respuesta. Puede ser la opción correcta o una de las incorrectas."></i>
-    </label>
-    <textarea pInputTextarea id="alternativa" class="w-full" autocomplete="off" [(ngModel)]="alternativaDialogo.alternativa" placeholder="Ej: Es un framework para construir interfaces de usuario." rows="3"></textarea>
+      <label for="alternativa" class="font-semibold">
+        Texto de la Alternativa
+        <i class="pi pi-info-circle ml-2"
+          pTooltip="Escribe el texto de la respuesta. Puede ser la opción correcta o una de las incorrectas."></i>
+      </label>
+      <textarea pInputTextarea id="alternativa" class="w-full" autocomplete="off"
+        [(ngModel)]="alternativaDialogo.alternativa"
+        placeholder="Ej: Es un framework para construir interfaces de usuario." rows="3"></textarea>
     </div>
 
     <!-- Fila para 'Es Correcta' y 'Pregunta' -->
     <div class="field col-12 md:col-6">
-    <label for="esCorrecta" class="font-semibold">
-    ¿Es correcta? (esCorrecta)
-    <i class="pi pi-info-circle ml-2" pTooltip="Indica si esta alternativa es la respuesta correcta a la pregunta."></i>
-    </label>
-    <p-dropdown
-    id="esCorrecta"
-    [options]="[{label:'Sí', value:true}, {label:'No', value:false}]"
-    [(ngModel)]="alternativaDialogo.esCorrecta"
-    placeholder="Seleccione"
-    styleClass="w-full"
-    [appendTo]="'body'"
-    ></p-dropdown>
+      <label for="esCorrecta" class="font-semibold">
+        ¿Es correcta? (esCorrecta)
+        <i class="pi pi-info-circle ml-2"
+          pTooltip="Indica si esta alternativa es la respuesta correcta a la pregunta."></i>
+      </label>
+      <p-dropdown id="esCorrecta" [options]="[{label:'Sí', value:true}, {label:'No', value:false}]"
+        [(ngModel)]="alternativaDialogo.esCorrecta" placeholder="Seleccione" styleClass="w-full"
+        [appendTo]="'body'"></p-dropdown>
     </div>
 
     <div class="field col-12 md:col-6">
-    <label for="pregunta" class="font-semibold">
-    Pregunta
+      <label for="pregunta" class="font-semibold">
+        Pregunta
         <i class="pi pi-info-circle ml-2" pTooltip="Asocia esta alternativa a una pregunta existente."></i>
-    </label>
-    <!-- NOTADEEDSONDOESSSSS: Se ha cambiado p-select por p-dropdown para consistencia -->
-    <p-dropdown
-    id="pregunta"
-    [options]="preguntas"
-    [(ngModel)]="pregun_select"
-    optionLabel="pregunta"
-    placeholder="Seleccione una pregunta"
-    styleClass="w-full"
-    [appendTo]="'body'"
-    ></p-dropdown>
+      </label>
+      <!-- NOTADEEDSONDOESSSSS: Se ha cambiado p-select por p-dropdown para consistencia -->
+      <p-dropdown id="pregunta" [options]="preguntas" [(ngModel)]="pregun_select" optionLabel="pregunta"
+        placeholder="Seleccione una pregunta" styleClass="w-full" [appendTo]="'body'"></p-dropdown>
     </div>
-    </div>
+  </div>
 
-    <!-- Pie de página del diálogo -->
-    <ng-template pTemplate="footer">
+  <!-- Pie de página del diálogo -->
+  <ng-template pTemplate="footer">
     <div class="flex justify-content-end gap-2">
-    <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
-    <p-button label="Guardar" (click)="guardarAlternativa()" />
+      <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+      <p-button label="Guardar" (click)="guardarAlternativa()" />
     </div>
-    </ng-template>
-    </p-dialog>
-
+  </ng-template>
+</p-dialog>
